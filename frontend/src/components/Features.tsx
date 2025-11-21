@@ -10,12 +10,12 @@ const Features = () => {
     offset: ["start start", "end start"]
   });
 
-  // Smooth parallax movements - opposite directions like Hero
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-40%"]);
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
+  // Balanced parallax speeds - smoother and more premium
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.02]);
 
   return (
     <motion.div 
@@ -89,7 +89,7 @@ const Features = () => {
 
             <TiltCard 
               className="bg-teal border-2 border-teal/80"
-              delay={0.2}
+              delay={0.1}
             >
               <div className="flex justify-between items-start mb-8">
                 <h3 className="text-black text-4xl md:text-5xl font-bold leading-[0.95] tracking-tight max-w-[80%]">
@@ -152,19 +152,19 @@ const TiltCard = ({
     y.set(0);
   };
 
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { 
-    stiffness: 200, 
-    damping: 25 
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), { 
+    stiffness: 150, 
+    damping: 20 
   });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { 
-    stiffness: 200, 
-    damping: 25 
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { 
+    stiffness: 150, 
+    damping: 20 
   });
   
   const sheenGradient = useMotionTemplate`linear-gradient(
-      ${useTransform(rotateY, [-8, 8], [135, 45])}deg, 
+      ${useTransform(rotateY, [-6, 6], [135, 45])}deg, 
       rgba(255,255,255,0) 0%, 
-      rgba(255,255,255,0.15) 40%, 
+      rgba(255,255,255,0.12) 40%, 
       rgba(255,255,255,0) 100%
   )`;
 
@@ -179,8 +179,8 @@ const TiltCard = ({
       }}
       initial={{ 
         opacity: 0, 
-        y: 60,
-        scale: 0.9
+        y: 40,
+        scale: 0.95
       }}
       whileInView={{ 
         opacity: 1, 
@@ -188,7 +188,7 @@ const TiltCard = ({
         scale: 1
       }}
       transition={{ 
-        duration: 0.8, 
+        duration: 1, 
         ease: "easeOut",
         delay
       }}
@@ -197,7 +197,7 @@ const TiltCard = ({
     >
       <motion.div 
         style={{ background: sheenGradient }}
-        className="absolute inset-0 rounded-3xl opacity-60 pointer-events-none z-20"
+        className="absolute inset-0 rounded-3xl opacity-50 pointer-events-none z-20"
       />
       <div style={{ transform: "translateZ(40px)" }}>
         {children}
