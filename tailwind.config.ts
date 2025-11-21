@@ -16,7 +16,8 @@ export default {
       fontFamily: {
         sans: ['Space Grotesk', 'sans-serif'],
         mono: ['Space Mono', 'monospace'],
-        'pixel': ['"Press Start 2P"', 'cursive'], // ADD THIS
+        'pixel': ['"Press Start 2P"', 'cursive'],
+        'brush': ['"Permanent Marker"', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -27,7 +28,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          glow: "hsl(var(--primary-glow))", // ADD THIS
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -53,7 +54,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // KEEP OLD COLORS
         cream: "hsl(var(--cream))",
         black: "hsl(var(--black))",
         mint: "hsl(var(--mint))",
@@ -61,7 +61,6 @@ export default {
         "light-cream": "hsl(var(--light-cream))",
         lavender: "hsl(var(--lavender))",
         "yellow-green": "hsl(var(--yellow-green))",
-        // ADD NEW SPACE COLORS
         space: {
           black: "hsl(var(--space-black))",
         },
@@ -117,7 +116,6 @@ export default {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-20px)" }
         },
-        // ADD NEW ANIMATIONS
         twinkle: {
           "0%, 100%": { opacity: "1", transform: "scale(1)" },
           "50%": { opacity: "0.3", transform: "scale(0.8)" },
@@ -132,7 +130,6 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out",
         "float": "float 3s ease-in-out infinite",
-        // ADD NEW ANIMATIONS
         "twinkle": "twinkle 3s ease-in-out infinite",
         "twinkle-slow": "twinkle 5s ease-in-out infinite",
         "float-slow": "float-slow 8s ease-in-out infinite",

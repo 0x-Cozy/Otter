@@ -109,6 +109,10 @@
   .font-pixel {
     font-family: 'Press Start 2P', cursive;
   }
+
+  .font-brush {
+    font-family: 'Permanent Marker', cursive;
+  }
 }
 
 @layer utilities {
@@ -197,26 +201,11 @@
     transform: translateZ(0px) scale(1);
   }
 
-  .parallax-section {
-    perspective: 1px;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-y: auto;
+  .perspective-1000 {
+    perspective: 1000px;
   }
 
-  .parallax-layer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-
-  .parallax-background {
-    transform: translateZ(-1px) scale(2);
-  }
-
-  .parallax-content {
-    transform: translateZ(0);
+  .features-section {
+    background: hsl(var(--cream)) !important;
   }
 }
