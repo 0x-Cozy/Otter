@@ -11,7 +11,7 @@ const BuildingWithOtter = () => {
     {
       name: "AGENTLAB",
       category: "AI AGENTS",
-      description: "AgentLab is building autonomous AI agents using OTTER, Walrus, and ZK-SEAL to enable confidential, automated, and enforceable data access for the agentic economy.",
+      description: "AgentLab is building autonomous AI agents using OTTER, Walrus, and Seal to enable confidential, automated, and enforceable data access for the agentic economy.",
       bg: "bg-light-cream"
     },
     {

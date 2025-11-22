@@ -1,6 +1,5 @@
 import { Starfield } from "../components/Starfield";
 import { AstronautOtter } from "../components/AstronautOtter";
-import Navbar from "../components/Navbar";
 import astronautCream from "@/assets/astronaut-cream.png";
 import astronautGreen from "@/assets/astronaut-green.png";
 import astronautBlue from "@/assets/astronaut-blue.png";
@@ -38,8 +37,6 @@ const Hero = () => {
       </motion.div>
 
       <div className="relative z-10 h-full parallax-foreground">
-        <Navbar />
-
         <main className="container mx-auto px-6 h-full flex items-center justify-center">
           <div className="max-w-7xl mx-auto w-full">
             <motion.div 
@@ -73,7 +70,7 @@ const Hero = () => {
               </h1>
 
               <p className="text-lg md:text-xl lg:text-2xl text-foreground/90 max-w-3xl mx-auto leading-relaxed font-light">
-                OTTER connects Walrus storage and ZK-SEAL encryption into a single intelligent system for AI agents and smart contracts
+                Otter is a programmable data exchange layer powered by Sui, Walrus and Seal, connecting data providers and consumers through secure, access-controlled data transactions.
               </p>
             </motion.div>
 

@@ -20,15 +20,15 @@ const cards: CardData[] = [
   {
     id: 1,
     title: "DISCOVER & ACCESS DATA",
-    description: "Use Otter's universal metadata protocol to standardize discovery and access to encrypted data stored in Walrus, enabling automatic location by AI agents and smart contracts.",
+    description: "Use Otter's universal metadata protocol to standardize discovery, enabling automatic location by AI agents and humans alike.",
     bgColor: "bg-[#a3a1e8]",
     iconImage: magnifyingGlass,
     iconAlt: "Discover Data"
   },
   {
     id: 2,
-    title: "VERIFY WITH ZK-SEAL",
-    description: "Decentralized verification of permissions and decryption requests through ZK-SEAL, ensuring secure and private access control.",
+    title: "SECURE WITH SEAL",
+    description: "Decentralized verification of permissions and decryption requests through Seal, ensuring secure and private access control.",
     bgColor: "bg-[#8cf2a3]",
     iconImage: security,
     iconAlt: "Security Verification"

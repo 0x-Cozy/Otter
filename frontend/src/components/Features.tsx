@@ -57,7 +57,7 @@ const Features = () => {
               FEATURES
             </h2>
             <p className="text-xl md:text-2xl text-black/70 max-w-2xl mx-auto">
-              Built for the next generation of decentralized AI and smart contracts
+              Built for the next generation of decentralized data exchange.
             </p>
           </motion.div>
 
@@ -68,7 +68,7 @@ const Features = () => {
             >
               <div className="flex justify-between items-start mb-8">
                 <h3 className="text-white text-4xl md:text-5xl font-bold leading-[0.95] tracking-tight max-w-[80%]">
-                  PRIVACY AS PUBLIC INFRASTRUCTURE
+                  PROGRAMMABLE <div>DATA</div>EXCHANGE
                 </h3>
                 <div className="bg-white rounded-full p-2 shrink-0">
                   <CheckCircle2 className="w-6 h-6 text-black" />
@@ -76,7 +76,7 @@ const Features = () => {
               </div>
               
               <p className="text-gray-300 text-lg leading-relaxed">
-                Decentralized storage meets built-in encryption. OTTER brings zero-trust security to public infrastructure, eliminating the need for custom security implementations.
+                A data exchange layer that enables consumers to programmatically choose the amount of data to pay for and decrypt—enabling both human users and AI agents to access exactly what they need without the need for a provider-defined interface.
               </p>
             </TiltCard>
 
@@ -94,7 +94,7 @@ const Features = () => {
               </div>
               
               <p className="text-black/80 text-lg leading-relaxed font-medium">
-                Define granular data access policies that enforce themselves. No custom infrastructure required—just smart contracts and cryptographic guarantees.
+              Define granular data access policies that enforce themselves. Built on Sui, Walrus and Seal, Otter enables providers to define access rules for their data through fine-grained access control.
               </p>
             </TiltCard>
           </div>
