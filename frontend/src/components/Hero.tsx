@@ -70,7 +70,7 @@ const Hero = () => {
               </h1>
 
               <p className="text-lg md:text-xl lg:text-2xl text-foreground/90 max-w-3xl mx-auto leading-relaxed font-light">
-                Otter is a programmable data exchange layer powered by Sui, Walrus and Seal, connecting data providers and consumers through secure, access-controlled data transactions.
+                Otter is a programmable data exchange layer that connects data providers and consumers through secure, self-discoverable access-control removing the need for provider-defined interfaces.
               </p>
             </motion.div>
 
