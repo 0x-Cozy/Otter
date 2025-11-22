@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import magnifyingGlass from '@/assets/Magnifying-glass.png';
@@ -137,8 +137,8 @@ const TiltCard = ({
         overflow-hidden
         text-black
         cursor-default
-        h-full
-        min-w-[420px] md:min-w-[460px]
+        flex-shrink-0
+        w-[460px] h-[550px]
         shadow-2xl
       `}
     >
@@ -181,17 +181,14 @@ const WhatIsOtter = () => {
   const handleScroll = () => {
     if (!containerRef.current) return;
     const container = containerRef.current;
-    const center = container.scrollLeft + container.clientWidth / 2;
     
-    const cards = Array.from(container.children);
+    const cardsElements = Array.from(container.children) as HTMLElement[];
     let closestIndex = 1;
     let minDistance = Infinity;
 
-    cards.forEach((card, index) => {
-      const rect = (card as HTMLElement).getBoundingClientRect();
-      const cardCenter = rect.left + rect.width / 2;
-      const containerRect = container.getBoundingClientRect();
-      const containerCenter = containerRect.left + containerRect.width / 2;
+    cardsElements.forEach((card, index) => {
+      const cardCenter = card.offsetLeft + card.clientWidth / 2;
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
       
       const distance = Math.abs(containerCenter - cardCenter);
       
@@ -207,7 +204,8 @@ const WhatIsOtter = () => {
   const scroll = (direction: 'left' | 'right') => {
     if (containerRef.current) {
       const { current } = containerRef;
-      const scrollAmount = current.children[0].clientWidth + 32;
+      const firstCard = current.children[0] as HTMLElement;
+      const scrollAmount = firstCard.clientWidth + 32;
 
       if (direction === 'left') {
         current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
@@ -216,6 +214,12 @@ const WhatIsOtter = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (containerRef.current) {
+      handleScroll(); 
+    }
+  }, []);
 
   return (
     <section className="min-h-screen w-full bg-black text-cream py-20 md:py-32 relative overflow-hidden">
@@ -227,11 +231,11 @@ const WhatIsOtter = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* KEPT YOUR ORIGINAL HEADER */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
           className="text-center mb-16 md:mb-24"
         >
           <h2 className="text-6xl md:text-8xl font-bold mb-6 leading-none font-pixel">
@@ -256,19 +260,20 @@ const WhatIsOtter = () => {
               delay={index * 0.1}
             />
           ))}
-          <div className="min-w-[1px] h-full opacity-0" />
+          <div className="min-w-[1px] h-full opacity-0 flex-shrink-0" />
         </div>
 
-        {/* KEPT YOUR ORIGINAL NAVIGATION */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
+          viewport={{ once: true }}
           className="flex justify-center items-center gap-6 mt-12"
         >
           <button 
             onClick={() => scroll('left')}
             className="w-14 h-14 rounded-full border-2 border-cream/30 flex items-center justify-center hover:bg-cream hover:text-black transition-all duration-300 hover:scale-110"
+            disabled={activeIndex === 1}
           >
             <ArrowLeft size={20} />
           </button>
@@ -286,13 +291,13 @@ const WhatIsOtter = () => {
           <button 
             onClick={() => scroll('right')}
             className="w-14 h-14 rounded-full border-2 border-cream/30 flex items-center justify-center hover:bg-cream hover:text-black transition-all duration-300 hover:scale-110"
+            disabled={activeIndex === cards.length}
           >
             <ArrowRight size={20} />
           </button>
         </motion.div>
       </div>
 
-      {/* KEPT YOUR ORIGINAL CROSSHAIRS */}
       <div className="absolute bottom-8 left-8 opacity-20">
         <div className="w-5 h-5">
           <div className="w-full h-px bg-cream absolute top-1/2 -translate-y-1/2"></div>
