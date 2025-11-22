@@ -10,20 +10,18 @@ const Features = () => {
     offset: ["start start", "end start"]
   });
 
-  // Balanced parallax speeds - smoother and more premium
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
-  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.02]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
+  const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.95], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.01]);
 
   return (
     <motion.div 
       ref={containerRef}
-      className="relative min-h-[140vh] bg-cream overflow-hidden features-section perspective-3d"
+      className="relative min-h-[180vh] bg-cream overflow-hidden features-section perspective-3d"
       style={{ scale }}
     >
-      {/* Background OTTER Text - moves DOWN slowly */}
       <motion.div 
         className="absolute inset-0 z-0 flex items-center justify-center"
         style={{ 
@@ -36,9 +34,7 @@ const Features = () => {
         </h1>
       </motion.div>
 
-      {/* Content - moves UP */}
       <div className="relative z-10">
-        {/* Decorative Elements */}
         <div className="fixed top-8 left-8 z-50">
           <CrosshairIcon />
         </div>
@@ -46,7 +42,6 @@ const Features = () => {
           <CrosshairIcon />
         </div>
 
-        {/* Main Content */}
         <motion.div 
           className="container mx-auto px-6 pt-32 pb-20"
           style={{ 
@@ -54,7 +49,6 @@ const Features = () => {
             opacity 
           }}
         >
-          {/* Section Header */}
           <motion.div 
             className="text-center mb-20"
             style={{ y: textY }}
@@ -67,7 +61,6 @@ const Features = () => {
             </p>
           </motion.div>
 
-          {/* Feature Cards */}
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             <TiltCard 
               className="bg-gray-800 border-2 border-gray-700"
@@ -106,16 +99,13 @@ const Features = () => {
             </TiltCard>
           </div>
 
-          {/* Bottom CTA */}
           <motion.div 
             className="text-center mt-16"
             style={{ y: textY }}
           >
-            <div className="inline-block px-6 py-3 bg-black rounded-full">
-              <span className="text-cream font-mono text-sm uppercase tracking-wider">
-                EXPLORE THE DOCS →
-              </span>
-            </div>
+            <button className="px-8 py-4 bg-black hover:bg-black/90 text-cream font-mono text-sm uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-105">
+              EXPLORE THE DOCS →
+            </button>
           </motion.div>
         </motion.div>
       </div>
@@ -123,15 +113,17 @@ const Features = () => {
   );
 };
 
+interface TiltCardProps {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}
+
 const TiltCard = ({ 
   children, 
   className, 
   delay = 0 
-}: { 
-  children: React.ReactNode; 
-  className?: string;
-  delay?: number;
-}) => {
+}: TiltCardProps) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -152,17 +144,17 @@ const TiltCard = ({
     y.set(0);
   };
 
-  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [6, -6]), { 
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [4, -4]), { 
     stiffness: 150, 
     damping: 20 
   });
-  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-6, 6]), { 
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-4, 4]), { 
     stiffness: 150, 
     damping: 20 
   });
   
   const sheenGradient = useMotionTemplate`linear-gradient(
-      ${useTransform(rotateY, [-6, 6], [135, 45])}deg, 
+      ${useTransform(rotateY, [-4, 4], [135, 45])}deg, 
       rgba(255,255,255,0) 0%, 
       rgba(255,255,255,0.12) 40%, 
       rgba(255,255,255,0) 100%
@@ -188,7 +180,7 @@ const TiltCard = ({
         scale: 1
       }}
       transition={{ 
-        duration: 1, 
+        duration: 1.2, 
         ease: "easeOut",
         delay
       }}
