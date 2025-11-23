@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
       </motion.div>
 
       <div className="relative z-10 h-full parallax-foreground">
-        <main className="container mx-auto px-6 h-full flex items-center justify-center">
+        <main className="container mx-auto px-4 sm:px-6 h-full flex items-center justify-center">
           <div className="max-w-7xl mx-auto w-full">
             <motion.div 
               initial={{ opacity: 0, x: 100, rotate: -20 }}
@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
                 delay: 0.3,
                 ease: [0.16, 1, 0.3, 1]
               }}
-              className="absolute top-16 -right-12 md:-right-16 w-48 md:w-64 lg:w-80 z-[60] parallax-medium"
+              className="absolute top-8 sm:top-12 md:top-16 -right-4 sm:-right-8 md:-right-12 lg:-right-16 w-32 sm:w-40 md:w-48 lg:w-64 xl:w-80 z-[60] parallax-medium"
               style={{ 
                 y: astronautY,
                 opacity 
@@ -59,13 +59,13 @@ const Hero: React.FC = () => {
             </motion.div>
 
             <motion.div 
-              className="text-center relative z-10 parallax-foreground"
+              className="text-center relative z-10 parallax-foreground px-4 sm:px-0"
               style={{ 
                 y: textY,
                 opacity 
               }}
             >
-              <div className="overflow-hidden mb-8">
+              <div className="overflow-hidden mb-6 sm:mb-8">
                 <motion.h1 
                   initial={{ y: 100, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -73,7 +73,7 @@ const Hero: React.FC = () => {
                     duration: 1,
                     ease: [0.16, 1, 0.3, 1]
                   }}
-                  className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-pixel tracking-wider text-foreground"
+                  className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-pixel tracking-wider text-foreground leading-tight"
                 >
                   <span className="block">
                     THE MISSING
@@ -92,14 +92,14 @@ const Hero: React.FC = () => {
                   delay: 0.4,
                   ease: [0.16, 1, 0.3, 1]
                 }}
-                className="text-lg md:text-xl lg:text-2xl text-foreground/90 max-w-3xl mx-auto leading-relaxed font-light"
+                className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-foreground/90 max-w-3xl mx-auto leading-relaxed font-light px-2 sm:px-4"
               >
                 Otter is a programmable data exchange layer that connects data providers and consumers through secure, self-discoverable access-control removing the need for provider-defined interfaces.
               </motion.p>
             </motion.div>
 
             <motion.div 
-              className="absolute bottom-8 left-0 right-0 parallax-medium"
+              className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-0 right-0 parallax-medium"
               style={{ 
                 y: astronautY,
                 opacity 
@@ -114,7 +114,7 @@ const Hero: React.FC = () => {
                     delay: 0.6,
                     ease: [0.16, 1, 0.3, 1]
                   }}
-                  className="absolute bottom-0 left-0 md:left-12 w-32 md:w-48 lg:w-64"
+                  className="absolute bottom-0 left-0 sm:left-4 md:left-8 lg:left-12 w-24 sm:w-32 md:w-40 lg:w-48 xl:w-64"
                 >
                   <AstronautOtter 
                     src={astronautGreen} 
@@ -131,7 +131,7 @@ const Hero: React.FC = () => {
                     delay: 0.8,
                     ease: [0.16, 1, 0.3, 1]
                   }}
-                  className="absolute bottom-0 right-0 md:right-12 w-32 md:w-48 lg:w-64"
+                  className="absolute bottom-0 right-0 sm:right-4 md:right-8 lg:right-12 w-24 sm:w-32 md:w-40 lg:w-48 xl:w-64"
                 >
                   <AstronautOtter 
                     src={astronautBlue} 
