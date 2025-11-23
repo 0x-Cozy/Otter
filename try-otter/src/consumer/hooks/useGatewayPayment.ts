@@ -46,17 +46,10 @@ export function useGatewayPayment() {
       try {
         const previewTx = new Transaction();
         
-        const previewArgs = gatewayFunction.arguments 
-          ? gatewayFunction.arguments.map((arg: any) => {
-              if (typeof arg === 'string' && arg.startsWith('0x')) {
-                return previewTx.object(arg);
-              }
-              return previewTx.pure.u64(arg);
-            })
-          : [
-              previewTx.object(header.policyObjectId),
-              previewTx.pure.u64(targetMaxIndex),
-            ];
+        const previewArgs = [
+          previewTx.object(header.policyObjectId),
+          previewTx.pure.u64(targetMaxIndex),
+        ];
         
         previewTx.moveCall({
           target: previewTarget,
@@ -134,18 +127,11 @@ export function useGatewayPayment() {
       const tx = new Transaction();
       const [coin] = tx.splitCoins(tx.gas, [tx.pure.u64(totalFeeNeeded.toString())]);
       
-      const paymentArgs = gatewayFunction.arguments
-        ? [coin, ...gatewayFunction.arguments.map((arg: any) => {
-            if (typeof arg === 'string' && arg.startsWith('0x')) {
-              return tx.object(arg);
-            }
-            return tx.pure.u64(arg);
-          })]
-        : [
-            coin,
-            tx.object(header.policyObjectId),
-            tx.pure.u64(targetMaxIndex),
-          ];
+      const paymentArgs = [
+        coin,
+        tx.object(header.policyObjectId),
+        tx.pure.u64(targetMaxIndex),
+      ];
       
       tx.moveCall({
         target: `${gatewayFunction.packageId}::${gatewayFunction.module}::${gatewayFunction.function}`,

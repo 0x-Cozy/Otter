@@ -34,17 +34,10 @@ export async function getPaymentQuote(
     const previewTx = new Transaction();
     previewTx.setSender(keypair.toSuiAddress());
 
-    const previewArgs = gatewayFunction.arguments 
-      ? gatewayFunction.arguments.map((arg: any) => {
-          if (typeof arg === 'string' && arg.startsWith('0x')) {
-            return previewTx.object(arg);
-          }
-          return previewTx.pure.u64(arg);
-        })
-      : [
-          previewTx.object(header.policyObjectId),
-          previewTx.pure.u64(targetMaxIndex),
-        ];
+    const previewArgs = [
+      previewTx.object(header.policyObjectId),
+      previewTx.pure.u64(targetMaxIndex),
+    ];
     
     previewTx.moveCall({
       target: previewTarget,
@@ -118,18 +111,11 @@ export async function processPayment(
       throw new Error('gatewayFunction.function is required but not provided in blob header');
     }
     
-    const paymentArgs = gatewayFunction.arguments
-      ? [coin, ...gatewayFunction.arguments.map((arg: any) => {
-          if (typeof arg === 'string' && arg.startsWith('0x')) {
-            return tx.object(arg);
-          }
-          return tx.pure.u64(arg);
-        })]
-      : [
-          coin,
-          tx.object(header.policyObjectId),
-          tx.pure.u64(targetMaxIndex),
-        ];
+    const paymentArgs = [
+      coin,
+      tx.object(header.policyObjectId),
+      tx.pure.u64(targetMaxIndex),
+    ];
     
     tx.moveCall({
       target: `${gatewayFunction.packageId}::${gatewayFunction.module}::${gatewayFunction.function}`,

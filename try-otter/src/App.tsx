@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="relative bg-background min-h-screen">
       <Navbar activeTab={activeTab} />
-      <section className="relative z-10 bg-background overflow-hidden pt-20">
+      <section className="relative z-10 bg-background overflow-hidden pt-16 md:pt-20">
         <TryOtterUI activeTab={activeTab} onTabChange={handleTabChange} />
       </section>
       {showTutorial && <TutorialGuide onComplete={handleTutorialComplete} />}

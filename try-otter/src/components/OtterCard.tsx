@@ -75,12 +75,12 @@ const OtterCard = ({ onSearchResult, onDecrypted }: OtterCardProps) => {
   };
 
   return (
-    <Card className="w-full max-w-lg h-[520px] shadow-sm border-border/60 flex flex-col overflow-hidden">
-      <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-border/40">
-        <h2 className="text-lg font-semibold text-foreground tracking-tight">Data Viewer</h2>
+    <Card className="w-full h-auto min-h-[400px] md:h-[520px] shadow-sm border-border/60 flex flex-col overflow-hidden">
+      <div className="flex items-center justify-between px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 border-b border-border/40">
+        <h2 className="text-base sm:text-lg font-semibold text-foreground tracking-tight">Data Viewer</h2>
       </div>
 
-      <div className="px-6 pt-6 pb-4 space-y-3">
+      <div className="px-4 sm:px-6 pt-4 sm:pt-6 pb-3 sm:pb-4 space-y-3">
         <div>
           <p className="text-xs text-muted-foreground leading-relaxed">
             Search by Policy Object ID or Blob ID
@@ -112,7 +112,7 @@ const OtterCard = ({ onSearchResult, onDecrypted }: OtterCardProps) => {
         )}
       </div>
 
-      <div className="mx-6 mb-6 flex-1 bg-muted/30 rounded-lg border border-border/40 overflow-auto">
+      <div className="mx-4 sm:mx-6 mb-4 sm:mb-6 flex-1 bg-muted/30 rounded-lg border border-border/40 overflow-auto min-h-[200px]">
         {searchBlobId && searchPolicyObjectId ? (
           <InlineDecryptionView
             blobId={searchBlobId}

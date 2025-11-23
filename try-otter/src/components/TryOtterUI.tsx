@@ -90,23 +90,25 @@ const TryOtterUI = ({ activeTab, onTabChange }: TryOtterUIProps = {}) => {
   };
 
   return (
-    <div className="px-8 pt-8 pb-12 [perspective:2000px]" data-tutorial="intro">
+    <div className="px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 md:pt-8 pb-12 [perspective:2000px]" data-tutorial="intro">
       <div className="max-w-7xl mx-auto w-full">
         <Tabs value={currentTab} onValueChange={handleTabChange} className="w-full">
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-6 md:mb-8">
             <TabsList className="grid w-full max-w-md grid-cols-2 h-11 bg-muted/50 p-1" data-tutorial="tabs">
               <TabsTrigger 
                 value="consumer" 
-                className="text-sm font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                className="text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm"
               >
-                Consumer (Search & Decrypt)
+                <span className="hidden sm:inline">Consumer (Search & Decrypt)</span>
+                <span className="sm:hidden">Consumer</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="provider"
-                className="text-sm font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm"
+                className="text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm"
                 data-tutorial="provider-tabs"
               >
-                Provider (Publish & Encrypt)
+                <span className="hidden sm:inline">Provider (Publish & Encrypt)</span>
+                <span className="sm:hidden">Provider</span>
               </TabsTrigger>
             </TabsList>
           </div>
@@ -116,9 +118,9 @@ const TryOtterUI = ({ activeTab, onTabChange }: TryOtterUIProps = {}) => {
               ref={containerRef}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="relative flex items-start justify-center gap-8 flex-wrap lg:flex-nowrap p-4"
+              className="relative flex items-start justify-center gap-4 sm:gap-6 md:gap-8 flex-wrap lg:flex-nowrap p-2 sm:p-4"
             >
-              <div className="flex-shrink-0 w-full max-w-lg shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] rounded-xl relative z-10 bg-background" data-tutorial="consumer-card">
+              <div className="flex-shrink-0 w-full max-w-full sm:max-w-md md:max-w-lg shadow-[0_20px_50px_rgba(8,_112,_184,_0.15)] rounded-xl relative z-10 bg-background" data-tutorial="consumer-card">
                 <OtterCard onDecrypted={handleDecrypted} />
               </div>
 
@@ -135,7 +137,7 @@ const TryOtterUI = ({ activeTab, onTabChange }: TryOtterUIProps = {}) => {
                 }}
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="flex-shrink-0 relative group shadow-2xl rounded-2xl"
+                className="flex-shrink-0 relative group shadow-2xl rounded-2xl w-full max-w-full sm:max-w-md md:max-w-lg"
                 data-tutorial="consumer-image"
               >
                 <div className="absolute -inset-4 bg-gradient-to-tr from-purple-500/20 to-cyan-500/20 rounded-3xl blur-2xl -z-10 transition-opacity opacity-0 group-hover:opacity-100" />
@@ -144,7 +146,7 @@ const TryOtterUI = ({ activeTab, onTabChange }: TryOtterUIProps = {}) => {
                 <img
                   src={displayImage}
                   alt={isDecryptedImage ? "Decrypted image" : "Otter skateboarding"}
-                  className="relative w-full max-w-lg h-[520px] object-cover rounded-2xl bg-background"
+                  className="relative w-full h-auto min-h-[300px] sm:min-h-[400px] md:h-[520px] object-cover rounded-2xl bg-background"
                 />
                 {isDecryptedImage && (
                   <div className="absolute top-4 right-4 z-20">
@@ -165,15 +167,15 @@ const TryOtterUI = ({ activeTab, onTabChange }: TryOtterUIProps = {}) => {
 
           <TabsContent value="provider" className="mt-0">
             <div className="w-full">
-              <div className="text-center mb-8">
-                <h2 className="text-2xl font-bold mb-2 text-foreground">
+              <div className="text-center mb-6 md:mb-8">
+                <h2 className="text-xl sm:text-2xl font-bold mb-2 text-foreground">
                   Upload Images - Easy Testing
                 </h2>
-                <p className="text-muted-foreground text-sm max-w-2xl mx-auto">
+                <p className="text-muted-foreground text-xs sm:text-sm max-w-2xl mx-auto px-4">
                   Upload an image, get a blob ID, and paste it on the consumer side to decrypt
                 </p>
               </div>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto px-4 sm:px-0">
                 <div className="bg-card border border-border rounded-xl p-1 shadow-sm" data-tutorial="allowlist-card">
                   <AllowlistCard />
                 </div>
