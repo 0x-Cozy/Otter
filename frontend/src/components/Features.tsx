@@ -21,7 +21,6 @@ const Features: React.FC = () => {
     offset: ["start end", "end start"]
   });
 
-  // --- SMOOTH FOOTER-STYLE PARALLAX ---
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
   const textParallax = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const gridY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
@@ -32,7 +31,6 @@ const Features: React.FC = () => {
       ref={containerRef}
       className="relative min-h-[140vh] sm:min-h-[160vh] bg-[#22d3ee] overflow-hidden features-section border-t-4 border-black font-mono"
     >
-      {/* --- 1. PARALLAX GRID --- */}
       <motion.div 
         className="absolute inset-0 pointer-events-none opacity-10"
         style={{ 
@@ -47,7 +45,6 @@ const Features: React.FC = () => {
          </div>
       </motion.div>
 
-      {/* --- 2. FLOATING DEBRIS (Walrus Style) - Hidden on mobile --- */}
       {!isMobile && (
         <>
           <motion.div 
@@ -69,7 +66,6 @@ const Features: React.FC = () => {
         </>
       )}
 
-      {/* --- 3. GIANT BACKGROUND TEXT --- */}
       <motion.div 
         className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none"
         style={{ 
@@ -85,7 +81,6 @@ const Features: React.FC = () => {
       <div className="relative z-10">
         <div className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-32 pb-16 sm:pb-24">
           
-          {/* --- HEADER (Smooth Slide Up) --- */}
           <motion.div 
             className="text-center mb-16 sm:mb-24"
             style={{ y: textParallax }}
@@ -142,8 +137,6 @@ const Features: React.FC = () => {
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-16 max-w-7xl mx-auto px-2 sm:px-0">
-            
-            {/* --- CARD 1 (Smooth Slide In) --- */}
             <motion.div
                 initial={{ opacity: 0, x: isMobile ? -40 : -80 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -183,7 +176,7 @@ const Features: React.FC = () => {
                 </WindowCard>
             </motion.div>
 
-            {/* --- CARD 2 (Smooth Slide In) --- */}
+            
             <motion.div
                 initial={{ opacity: 0, x: isMobile ? 40 : 80 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -228,7 +221,7 @@ const Features: React.FC = () => {
 
           </div>
 
-          {/* --- BUTTON (Smooth Scale) --- */}
+          
           <motion.div 
             className="text-center mt-20 sm:mt-32 px-4 sm:px-0"
             initial={{ opacity: 0, scale: 0.8 }}
@@ -301,7 +294,6 @@ const WindowCard: React.FC<WindowCardProps> = ({
     y.set(0);
   };
 
-  // Disable 3D tilt on mobile, use smooth spring on desktop
   const rotateX = isMobile ? 0 : useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { 
     stiffness: 150, 
     damping: 25,
@@ -324,7 +316,7 @@ const WindowCard: React.FC<WindowCardProps> = ({
         ease: [0.16, 1, 0.3, 1] 
       }}
     >
-        {/* 1. The Smooth Shadow - Smaller on mobile */}
+        
         <motion.div 
           className="absolute inset-0 bg-black -z-10"
           initial={{ translateX: isMobile ? 4 : 6, translateY: isMobile ? 4 : 6 }}
@@ -345,7 +337,7 @@ const WindowCard: React.FC<WindowCardProps> = ({
             }}
             className="relative bg-white border-3 sm:border-4 border-black h-full flex flex-col min-h-[400px] sm:min-h-[500px]"
         >
-            {/* --- WINDOW TITLE BAR --- */}
+            
             <div className={`h-10 sm:h-12 md:h-14 border-b-2 sm:border-b-3 md:border-b-4 border-black ${headerColor} flex items-center justify-between px-3 sm:px-4 select-none`} style={{ transform: isMobile ? "none" : "translateZ(20px)" }}>
                 <div className="flex items-center gap-2 sm:gap-3">
                     <div className="flex flex-col gap-[2px] sm:gap-[3px]">
@@ -368,7 +360,7 @@ const WindowCard: React.FC<WindowCardProps> = ({
                 </div>
             </div>
 
-            {/* --- WINDOW CONTENT --- */}
+            
             <div className="flex-1 bg-white relative" style={{ transform: isMobile ? "none" : "translateZ(40px)", transformStyle: "preserve-3d" }}>
                 {children}
                 

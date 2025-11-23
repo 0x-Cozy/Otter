@@ -27,7 +27,6 @@ export const Starfield = () => {
     setCanvasSize();
     window.addEventListener("resize", setCanvasSize);
 
-    // Create static stars that only twinkle
     const stars: Star[] = [];
     const starCount = 300;
 
@@ -46,18 +45,15 @@ export const Starfield = () => {
     let time = 0;
 
     const animate = () => {
-      // Clear canvas completely
       ctx.fillStyle = "#000000";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       time += 0.016;
 
       stars.forEach((star) => {
-        // Twinkle effect - oscillate opacity
         const twinkle = Math.sin(time * star.twinkleSpeed * 100 + star.twinkleOffset) * 0.5 + 0.5;
         const currentOpacity = star.opacity * twinkle;
 
-        // Draw star with subtle glow
         const gradient = ctx.createRadialGradient(
           star.x,
           star.y,
@@ -67,7 +63,6 @@ export const Starfield = () => {
           star.size * 3
         );
 
-        // White stars with slight blue tint
         gradient.addColorStop(0, `rgba(255, 255, 255, ${currentOpacity})`);
         gradient.addColorStop(0.4, `rgba(220, 235, 255, ${currentOpacity * 0.6})`);
         gradient.addColorStop(1, `rgba(220, 235, 255, 0)`);
@@ -76,8 +71,7 @@ export const Starfield = () => {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size * 3, 0, Math.PI * 2);
         ctx.fill();
-
-        // Core bright point
+        
         ctx.fillStyle = `rgba(255, 255, 255, ${currentOpacity})`;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.size * 0.5, 0, Math.PI * 2);

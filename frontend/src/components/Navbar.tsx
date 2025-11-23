@@ -18,7 +18,6 @@ const Navbar: React.FC = () => {
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
-    // Smooth scroll to section
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -41,7 +40,6 @@ const Navbar: React.FC = () => {
             <span className='text-xl md:text-2xl font-pixel mt-1 md:mt-2 ml-[-8px] md:ml-[-10px] tracking-tighter transition-colors text-foreground/90 group-hover:text-[#22d3ee]'>OTTER</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
               <button 
@@ -55,7 +53,6 @@ const Navbar: React.FC = () => {
             ))}
           </div>
 
-          {/* Desktop Buttons */}
           <div className="hidden md:flex items-center gap-6">
             <button 
               className="group relative px-6 py-3 font-bold font-mono text-xs uppercase tracking-wider text-white transition-all duration-200 hover:-translate-y-1 active:translate-y-0"
@@ -82,7 +79,6 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
           <button 
             onClick={toggleMobileMenu}
             className="md:hidden relative z-60 w-10 h-10 flex items-center justify-center text-white hover:text-[#22d3ee] transition-colors"
@@ -91,14 +87,12 @@ const Navbar: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile Menu Overlay */}
         <div className={`
           md:hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-lg transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]
           ${isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}
         `}>
           <div className="flex flex-col items-center justify-center min-h-screen space-y-12 px-6">
             
-            {/* Mobile Navigation Items */}
             <div className="flex flex-col items-center space-y-8">
               {navItems.map((item, index) => (
                 <button
@@ -114,7 +108,6 @@ const Navbar: React.FC = () => {
               ))}
             </div>
 
-            {/* Mobile Buttons */}
             <div className="flex flex-col items-center space-y-6 w-full max-w-xs">
               <button 
                 className="group relative w-full px-8 py-4 font-bold font-mono text-sm uppercase tracking-wider text-white transition-all duration-300 hover:scale-105"
