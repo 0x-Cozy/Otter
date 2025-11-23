@@ -60,6 +60,12 @@ const OtterFooter: React.FC = () => {
     { title: 'Use', links: ['SDK', 'APPS & SERVICES'] }
   ];
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log('Form submitted');
+  };
+
   return (
     <div 
       ref={footerRef}
@@ -72,7 +78,7 @@ const OtterFooter: React.FC = () => {
         }}
       >
         <div 
-          className="w-full h-full opacity-20"
+          className="w-full h-full opacity-20 pointer-events-none"
           style={{
             backgroundImage: `
               linear-gradient(to right, #000 1px, transparent 1px),
@@ -147,7 +153,15 @@ const OtterFooter: React.FC = () => {
                   <h4 className="font-black text-black text-sm uppercase border-b-4 border-black inline-block pb-1 mb-2">{column.title}</h4>
                   <ul className="space-y-3 text-sm font-bold text-slate-800">
                     {column.links.map(link => (
-                      <li key={link}><a href="#" className="hover:bg-white hover:text-black px-1 -ml-1 transition-all inline-block hover:translate-x-2 hover:scale-110 origin-left">{link}</a></li>
+                      <li key={link}>
+                        <a 
+                          href="#" 
+                          className="hover:bg-white hover:text-black px-1 -ml-1 transition-all inline-block hover:translate-x-2 hover:scale-110 origin-left"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          {link}
+                        </a>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -156,10 +170,6 @@ const OtterFooter: React.FC = () => {
 
             <div 
               className={`bg-white border-4 border-black p-0 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) delay-500 will-change-transform ${isVisible ? 'opacity-100 translate-x-0 rotate-y-0' : 'opacity-0 translate-x-40 rotate-y-12'}`}
-              style={{
-                transformStyle: 'preserve-3d',
-                transform: isVisible ? `translateZ(20px)` : undefined
-              }}
             >
               <div className="bg-black text-white px-6 py-3 font-bold uppercase text-sm tracking-wider flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -173,31 +183,37 @@ const OtterFooter: React.FC = () => {
               </div>
               
               <div className="p-8 md:p-10 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
                     <Box size={120} />
                 </div>
 
                 <h3 className="text-3xl font-black uppercase mb-3 text-black relative z-10">Sign up for updates</h3>
                 <p className="text-black font-medium mb-8 text-sm relative z-10 max-w-md">Join the Otter data layer. Secure the blob. Don't miss a beat.</p>
                 
-                <form className="flex flex-col gap-5 relative z-10">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5 relative z-10">
                   <input 
                     type="email" 
                     placeholder="ENTER YOUR EMAIL..." 
                     className="w-full bg-slate-100 border-2 border-black px-6 py-4 outline-none focus:bg-[#22d3ee] focus:placeholder-black text-black transition-all placeholder:text-slate-400 font-mono font-bold text-lg shadow-[4px_4px_0px_rgba(0,0,0,0.2)] focus:shadow-none focus:translate-x-[2px] focus:translate-y-[2px]"
+                    required
                   />
                   
                   <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                     <div className="flex items-start gap-3">
-                      <input type="checkbox" id="marketing" className="mt-1 w-5 h-5 border-2 border-black text-black focus:ring-0 rounded-none cursor-pointer" />
+                      <input 
+                        type="checkbox" 
+                        id="marketing" 
+                        className="mt-1 w-5 h-5 border-2 border-black text-black focus:ring-0 rounded-none cursor-pointer" 
+                        required
+                      />
                       <label htmlFor="marketing" className="text-xs font-bold leading-tight cursor-pointer select-none text-black pt-1">
                         I AGREE TO RECEIVE COMMS FROM <br/>OTTER PROTOCOL.
                       </label>
                     </div>
 
                     <button 
-                      type="button"
-                      className="w-full md:w-auto bg-black text-[#22d3ee] px-10 py-4 font-black uppercase hover:bg-white hover:text-black border-2 border-transparent hover:border-black transition-all flex items-center justify-center gap-3 shadow-[6px_6px_0px_rgba(34,211,238,1)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 active:translate-y-0 active:shadow-none group"
+                      type="submit"
+                      className="w-full md:w-auto bg-black text-[#22d3ee] px-10 py-4 font-black uppercase hover:bg-white hover:text-black border-2 border-transparent hover:border-black transition-all flex items-center justify-center gap-3 shadow-[6px_6px_0px_rgba(34,211,238,1)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:-translate-y-1 active:translate-y-0 active:shadow-none group cursor-pointer"
                     >
                       Submit <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                     </button>
@@ -211,8 +227,8 @@ const OtterFooter: React.FC = () => {
             >
                <p>© 2025 OTTER PROTOCOL.</p>
                <div className="flex gap-6 mt-4 md:mt-0">
-                 <a href="#" className="hover:bg-black hover:text-[#22d3ee] px-1 transition-colors">Privacy Policy</a>
-                 <a href="#" className="hover:bg-black hover:text-[#22d3ee] px-1 transition-colors">Terms of Service</a>
+                 <a href="#" className="hover:bg-black hover:text-[#22d3ee] px-1 transition-colors cursor-pointer">Privacy Policy</a>
+                 <a href="#" className="hover:bg-black hover:text-[#22d3ee] px-1 transition-colors cursor-pointer">Terms of Service</a>
                </div>
             </div>
 
