@@ -212,7 +212,7 @@ export default function OtterScrollSection() {
               {slides.map((_, idx) => (
                 <div
                   key={idx}
-                  className={`h-1.5 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                  className={`h-1.5 transition-all duration-500 ease-\[cubic-bezier\(0\.25\,1\,0\.5\,1\)\] ${
                     idx === currentIndex ? 'w-16 bg-black' : 'w-4 bg-slate-300'
                   }`}
                 />
