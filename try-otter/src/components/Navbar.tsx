@@ -48,3 +48,4 @@ const Navbar = ({ activeTab }: NavbarProps = {}) => {
 };
 
 export default Navbar;
+
