@@ -63,7 +63,7 @@ const cards: CardData[] = [
 
 const UseCases: React.FC = () => {
   return (
-    <section className="py-32 bg-[#09090b] relative overflow-hidden font-mono">
+    <section className="py-16 sm:py-24 md:py-32 bg-[#09090b] relative overflow-hidden font-mono">
       
         <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.05]" 
            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}>
@@ -79,24 +79,24 @@ const UseCases: React.FC = () => {
         }}>
       </div>
 
-      <div className="absolute top-20 -left-20 z-0 opacity-[0.05] -rotate-6 pointer-events-none select-none whitespace-nowrap">
-        <h1 className="text-[10rem] font-black text-white leading-none tracking-tighter" style={{ fontFamily: '"Press Start 2P"' }}>
+      <div className="absolute top-10 sm:top-20 -left-10 sm:-left-20 z-0 opacity-[0.05] -rotate-6 pointer-events-none select-none whitespace-nowrap overflow-hidden">
+        <h1 className="text-[6rem] sm:text-[8rem] md:text-[10rem] font-black text-white leading-none tracking-tighter" style={{ fontFamily: '"Press Start 2P"' }}>
             SYSTEM // ACTIVE
         </h1>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         
-        <div className="mb-24 text-center relative max-w-5xl mx-auto">
+        <div className="mb-16 sm:mb-20 md:mb-24 text-center relative max-w-5xl mx-auto">
           <motion.div 
              initial={{ opacity: 0, scale: 0.9 }}
              whileInView={{ opacity: 1, scale: 1 }}
              viewport={{ once: false, amount: 0.5 }}
              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-             className="inline-flex items-center gap-2 px-4 py-2 border border-white/20 bg-white/5 mb-8 backdrop-blur-sm"
+             className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 border border-white/20 bg-white/5 mb-6 sm:mb-8 backdrop-blur-sm"
           >
-            <Activity size={16} className="text-white" />
-            <span className="font-mono font-bold text-xs uppercase tracking-wider text-white">System Capabilities</span>
+            <Activity size={14} className="sm:w-4 sm:h-4 text-white" />
+            <span className="font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider text-white">System Capabilities</span>
           </motion.div>
           
           <motion.h2 
@@ -104,7 +104,7 @@ const UseCases: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-5xl font-bold mb-6 leading-snug md:leading-tight text-white"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-snug md:leading-tight text-white px-4"
             style={{ fontFamily: '"Press Start 2P", cursive' }}
           >
             ACTIVATE SMART<br/>
@@ -112,7 +112,7 @@ const UseCases: React.FC = () => {
           </motion.h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto perspective-1000">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 max-w-7xl mx-auto perspective-1000">
           {cards.map((card, i) => (
             <Card key={card.id} card={card} index={i} />
           ))}
@@ -175,18 +175,18 @@ const Card: React.FC<CardProps> = ({ card, index }) => {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="relative min-h-[450px] group cursor-default"
+      className="relative min-h-[400px] sm:min-h-[450px] group cursor-default"
     >
       <div 
-        className="absolute inset-0 border-4 border-white/20 bg-[#222] translate-x-4 translate-y-4 transition-transform duration-300"
+        className="absolute inset-0 border-2 sm:border-4 border-white/20 bg-[#222] translate-x-3 translate-y-3 sm:translate-x-4 sm:translate-y-4 transition-transform duration-300"
         style={{ 
-            transform: hovered ? 'translate(24px, 24px)' : 'translate(12px, 12px)',
+            transform: hovered ? 'translate(18px, 18px)' : 'translate(12px, 12px)',
             borderRadius: '0px' 
         }}
       ></div>
 
       <div 
-        className="absolute inset-0 border-4 border-black p-10 flex flex-col justify-between overflow-hidden transition-all duration-300"
+        className="absolute inset-0 border-2 sm:border-4 border-black p-6 sm:p-8 md:p-10 flex flex-col justify-between overflow-hidden transition-all duration-300"
         style={{ 
             backgroundColor: card.bg, 
             color: card.text,
@@ -197,34 +197,34 @@ const Card: React.FC<CardProps> = ({ card, index }) => {
              <ByteStream code={card.code} trigger={hovered} />
         </div>
         
-        <div className="absolute -top-6 -right-6 text-[8rem] font-black leading-none opacity-[0.07] select-none" style={{ fontFamily: '"Space Grotesk"' }}>
+        <div className="absolute -top-4 sm:-top-6 -right-4 sm:-right-6 text-[5rem] sm:text-[6rem] md:text-[8rem] font-black leading-none opacity-[0.07] select-none" style={{ fontFamily: '"Space Grotesk"' }}>
             {card.id}
         </div>
 
         <div className="relative z-10 flex justify-between items-start">
-            <div className={`p-4 border-2 border-current inline-flex items-center justify-center bg-white/10 backdrop-blur-sm ${hovered ? 'animate-bounce' : ''}`}>
-                <card.icon size={32} />
+            <div className={`p-3 sm:p-4 border-2 border-current inline-flex items-center justify-center bg-white/10 backdrop-blur-sm ${hovered ? 'animate-bounce' : ''}`}>
+                <card.icon size={24} className="sm:w-8 sm:h-8" />
             </div>
             <div className="flex gap-1">
                 {[...Array(3)].map((_, i) => (
-                    <div key={i} className={`w-2 h-2 border border-current ${i === 0 ? 'bg-current' : ''}`}></div>
+                    <div key={i} className={`w-1.5 h-1.5 sm:w-2 sm:h-2 border border-current ${i === 0 ? 'bg-current' : ''}`}></div>
                 ))}
             </div>
         </div>
 
         <div className="relative z-10 mt-auto">
-             <div className="mb-6 overflow-hidden h-20 flex items-center">
-                 <ScrambleText text={card.title} trigger={hovered} className="text-3xl font-bold uppercase tracking-tighter leading-[0.9]" />
+             <div className="mb-4 sm:mb-6 overflow-hidden h-16 sm:h-20 flex items-center">
+                 <ScrambleText text={card.title} trigger={hovered} className="text-2xl sm:text-3xl font-bold uppercase tracking-tighter leading-[0.9]" />
              </div>
              
-             <p className="text-lg font-medium leading-relaxed opacity-90" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+             <p className="text-sm sm:text-base md:text-lg font-medium leading-relaxed opacity-90" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
                 {card.description}
              </p>
 
-             <div className="mt-8 pt-6 border-t-2 border-current opacity-60 flex justify-between items-center font-mono text-xs uppercase tracking-widest">
+             <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t-2 border-current opacity-60 flex justify-between items-center font-mono text-[10px] sm:text-xs uppercase tracking-widest">
                 <span>// BLOB_ID_{card.id}</span>
-                <span className="flex items-center gap-2 font-bold">
-                    {hovered ? <Lock size={14} /> : <Zap size={14} />} 
+                <span className="flex items-center gap-1.5 sm:gap-2 font-bold">
+                    {hovered ? <Lock size={12} className="sm:w-3.5 sm:h-3.5" /> : <Zap size={12} className="sm:w-3.5 sm:h-3.5" />} 
                     {hovered ? 'ENCRYPTED' : 'ONLINE'}
                 </span>
              </div>
@@ -299,7 +299,7 @@ const ByteStream: React.FC<ByteStreamProps> = ({ code, trigger }) => {
                 </div>
             ))}
             <div className="mt-4 opacity-30">
-                <Binary size={48} className="ml-auto" />
+                <Binary size={40} className="sm:w-12 sm:h-12 ml-auto" />
             </div>
         </div>
     );

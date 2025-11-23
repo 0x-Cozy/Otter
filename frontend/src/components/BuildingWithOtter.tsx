@@ -113,23 +113,23 @@ export default function OtterScrollSection() {
   return (
     <div className="w-full bg-white flex flex-col font-sans">
       
-      <div className="w-full px-8 md:px-24 pt-20 pb-10 bg-white relative z-20">
-        <h1 className="text-4xl md:text-6xl text-slate-900 mb-4 uppercase tracking-tighter" style={{ fontFamily: '"Press Start 2P", cursive' }}>
+      <div className="w-full px-4 sm:px-6 md:px-12 lg:px-24 pt-16 sm:pt-20 pb-8 sm:pb-10 bg-white relative z-20">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-slate-900 mb-3 sm:mb-4 uppercase tracking-tighter" style={{ fontFamily: '"Press Start 2P", cursive' }}>
           THE PROTOCOL
         </h1>
-        <p className="text-xl text-slate-500 font-medium tracking-wide" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
+        <p className="text-base sm:text-lg md:text-xl text-slate-500 font-medium tracking-wide" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
           The native data exchange layer for the Sui ecosystem.
         </p>
       </div>
 
-      <div className="relative h-[110vh] w-full overflow-hidden border-t-4 border-black">
+      <div className="relative h-[90vh] sm:h-[100vh] md:h-[110vh] w-full overflow-hidden border-t-4 border-black">
         <div className="flex h-full w-full flex-col md:flex-row">
 
           <div
             ref={imageContainerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="relative h-1/2 w-full md:h-full md:w-1/2 bg-slate-100 overflow-hidden cursor-crosshair perspective-[1500px]"
+            className="relative h-2/5 w-full md:h-full md:w-1/2 bg-slate-100 overflow-hidden cursor-crosshair perspective-[1500px]"
           >
             <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.08]" 
                  style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
@@ -154,7 +154,7 @@ export default function OtterScrollSection() {
             <div className="absolute inset-0 z-10 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]"></div>
           </div>
 
-          <div className="relative h-1/2 w-full md:h-full md:w-1/2 bg-white flex flex-col justify-center px-8 md:px-24 border-l-0 md:border-l-4 border-black">
+          <div className="relative h-3/5 w-full md:h-full md:w-1/2 bg-white flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-24 py-8 md:py-0 border-t-4 md:border-t-0 md:border-l-4 border-black overflow-y-auto md:overflow-visible">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
@@ -166,22 +166,23 @@ export default function OtterScrollSection() {
                   visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
                   exit: { opacity: 0, transition: { duration: 0.2 } }
                 }}
+                className="w-full"
               >
                 <motion.div
                   variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
-                  className="w-16 h-16 border-2 border-black text-black flex items-center justify-center mb-8 text-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+                  className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 border-2 border-black text-black flex items-center justify-center mb-6 sm:mb-8 text-base sm:text-lg md:text-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                   style={{ fontFamily: '"Space Mono", monospace', fontWeight: 700, backgroundColor: slides[currentIndex].color }}
                 >
                   {slides[currentIndex].id}
                 </motion.div>
 
-                <div className="overflow-hidden mb-6">
+                <div className="overflow-hidden mb-4 sm:mb-6">
                   <motion.h2
                     variants={{ 
                       hidden: { y: "100%" }, 
                       visible: { y: 0, transition: { duration: 0.5, ease: [0.25, 1, 0.5, 1] } } 
                     }}
-                    className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tighter"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-slate-900 leading-[1.1] tracking-tighter"
                     style={{ fontFamily: '"Space Grotesk", sans-serif' }}
                   >
                     {slides[currentIndex].headline}
@@ -190,7 +191,7 @@ export default function OtterScrollSection() {
 
                 <motion.p
                   variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
-                  className="text-lg md:text-xl text-slate-600 mb-12 max-w-lg leading-relaxed font-medium"
+                  className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 mb-8 sm:mb-10 md:mb-12 max-w-lg leading-relaxed font-medium"
                   style={{ fontFamily: '"Space Grotesk", sans-serif' }}
                 >
                   {slides[currentIndex].description}
@@ -198,22 +199,22 @@ export default function OtterScrollSection() {
 
                 <motion.button
                   variants={{ hidden: { x: -20, opacity: 0 }, visible: { x: 0, opacity: 1 } }}
-                  className="group relative inline-flex items-center justify-center px-8 py-4 font-bold text-white transition-all duration-200 bg-black border-2 border-transparent hover:bg-white hover:text-black hover:border-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 font-bold text-white text-sm sm:text-base transition-all duration-200 bg-black border-2 border-transparent hover:bg-white hover:text-black hover:border-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                   style={{ fontFamily: '"Space Mono", monospace' }}
                 >
                   {slides[currentIndex].cta}
-                  <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
                   <div className="absolute -bottom-2 -right-2 w-full h-full border-2 border-black -z-10 group-hover:bottom-0 group-hover:right-0 transition-all"></div>
                 </motion.button>
               </motion.div>
             </AnimatePresence>
 
-            <div className="absolute bottom-12 right-12 flex gap-3">
+            <div className="absolute bottom-6 sm:bottom-8 md:bottom-12 right-6 sm:right-8 md:right-12 flex gap-2 sm:gap-3">
               {slides.map((_, idx) => (
                 <div
                   key={idx}
-                  className={`h-1.5 transition-all duration-500 ease-\[cubic-bezier\(0\.25\,1\,0\.5\,1\)\] ${
-                    idx === currentIndex ? 'w-16 bg-black' : 'w-4 bg-slate-300'
+                  className={`h-1 sm:h-1.5 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+                    idx === currentIndex ? 'w-12 sm:w-16 bg-black' : 'w-3 sm:w-4 bg-slate-300'
                   }`}
                 />
               ))}
@@ -255,7 +256,7 @@ function Image3DCard({ slide, index, currentIndex, mouseX, mouseY }: Image3DCard
         duration: 0.8, 
         ease: [0.16, 1, 0.3, 1] 
       }}
-      className="absolute inset-0 h-full w-full flex items-center justify-center p-12 md:p-24"
+      className="absolute inset-0 h-full w-full flex items-center justify-center p-6 sm:p-8 md:p-12 lg:p-24"
     >
       <motion.div
         style={{
@@ -263,7 +264,7 @@ function Image3DCard({ slide, index, currentIndex, mouseX, mouseY }: Image3DCard
           rotateY: isActive ? rotateY : 0,
           scale: isActive ? 1 : 0.9,
         }}
-        className="relative w-full h-full shadow-2xl overflow-hidden border-4 border-black bg-black"
+        className="relative w-full h-full shadow-2xl overflow-hidden border-2 sm:border-4 border-black bg-black"
       >
           <motion.img
             src={slide.image}
