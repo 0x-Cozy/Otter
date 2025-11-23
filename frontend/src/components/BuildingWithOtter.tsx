@@ -71,7 +71,6 @@ export default function OtterScrollSection() {
     mouseY.set(0);
   };
 
-  // Simple touch handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     const touchX = e.touches[0].clientX;
     const container = imageContainerRef.current;
@@ -94,10 +93,8 @@ export default function OtterScrollSection() {
 
     if (Math.abs(diffX) > swipeThreshold && !isAnimating) {
       if (diffX > 0 && currentIndex < slides.length - 1) {
-        // Swipe left - next
         triggerChange(currentIndex + 1);
       } else if (diffX < 0 && currentIndex > 0) {
-        // Swipe right - previous
         triggerChange(currentIndex - 1);
       }
     }
@@ -159,7 +156,7 @@ export default function OtterScrollSection() {
       <div className="relative h-[90vh] sm:h-[100vh] md:h-[110vh] w-full overflow-hidden border-t-4 border-black">
         <div className="flex h-full w-full flex-col md:flex-row">
 
-          {/* Image Section */}
+          {/* Image Section - Touch handlers ONLY here */}
           <div
             ref={imageContainerRef}
             onMouseMove={handleMouseMove}
@@ -203,12 +200,8 @@ export default function OtterScrollSection() {
             <div className="absolute inset-0 z-10 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]"></div>
           </div>
 
-          {/* Content Section */}
-          <div 
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            className="relative h-3/5 w-full md:h-full md:w-1/2 bg-white flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-24 py-8 md:py-0 border-t-4 md:border-t-0 md:border-l-4 border-black overflow-y-auto md:overflow-visible"
-          >
+          {/* Content Section - NO touch handlers here! */}
+          <div className="relative h-3/5 w-full md:h-full md:w-1/2 bg-white flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-24 py-8 md:py-0 border-t-4 md:border-t-0 md:border-l-4 border-black overflow-y-auto md:overflow-visible">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
