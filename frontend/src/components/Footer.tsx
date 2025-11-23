@@ -2,10 +2,20 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Twitter, Github, Disc, Box } from 'lucide-react';
 import otterMascot from '../assets/otter.png'; 
 
-const OtterFooter = () => {
-  const footerRef = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+interface MousePosition {
+  x: number;
+  y: number;
+}
+
+interface FooterColumn {
+  title: string;
+  links: string[];
+}
+
+const OtterFooter: React.FC = () => {
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [mousePos, setMousePos] = useState<MousePosition>({ x: 0, y: 0 });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -22,7 +32,7 @@ const OtterFooter = () => {
       observer.observe(footerRef.current);
     }
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent): void => {
       if (!footerRef.current) return;
       const rect = footerRef.current.getBoundingClientRect();
       
@@ -42,6 +52,13 @@ const OtterFooter = () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
+  const footerColumns: FooterColumn[] = [
+    { title: 'Discover', links: ['OTTER', 'WAL TOKEN', 'NETWORK', 'DEFLATION'] },
+    { title: 'Build', links: ['GET STARTED', 'DOCS', 'GITHUB'] },
+    { title: 'Join', links: ['TWITTER', 'DISCORD'] },
+    { title: 'Use', links: ['STAKE OTTR', 'APPS & SERVICES'] }
+  ];
 
   return (
     <div 
@@ -115,12 +132,7 @@ const OtterFooter = () => {
           >
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-              {[
-                { title: 'Discover', links: ['OTTER', 'WAL TOKEN', 'NETWORK', 'DEFLATION'] },
-                { title: 'Build', links: ['GET STARTED', 'DOCS', 'GITHUB'] },
-                { title: 'Join', links: ['TWITTER', 'DISCORD'] },
-                { title: 'Use', links: ['STAKE OTTR', 'APPS & SERVICES'] }
-              ].map((column, colIndex) => (
+              {footerColumns.map((column, colIndex) => (
                 <div 
                   key={column.title} 
                   className={`space-y-4 transition-all duration-[1200ms] cubic-bezier(0.16, 1, 0.3, 1)`}
