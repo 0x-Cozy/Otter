@@ -1,7 +1,6 @@
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Card } from "../../components/ui/card";
-import { Tabs, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { Search, Wallet } from "lucide-react";
 
 const OtterCard = () => {
@@ -19,26 +18,7 @@ const OtterCard = () => {
         </Button>
       </div>
 
-      <div className="px-6 pt-4 pb-3">
-        <Tabs defaultValue="consumer">
-          <TabsList className="grid w-full grid-cols-2 h-9 bg-muted/50 p-1">
-            <TabsTrigger 
-              value="consumer" 
-              className="text-xs font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm"
-            >
-              Consumer (New & Decrypt)
-            </TabsTrigger>
-            <TabsTrigger 
-              value="provider"
-              className="text-xs font-medium data-[state=active]:bg-background data-[state=active]:shadow-sm"
-            >
-              Provider (Encrypt & Upload)
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-      </div>
-
-      <div className="px-6 py-4 space-y-3">
+      <div className="px-6 pt-6 pb-4 space-y-3">
         <div>
           <h3 className="text-sm font-semibold text-foreground mb-1">
             Policy Object Viewer
