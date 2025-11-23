@@ -1,5 +1,5 @@
 import { ConnectButton } from '@mysten/dapp-kit';
-import { HelpCircle } from 'lucide-react';
+import { HelpCircle, Link } from 'lucide-react';
 import { Button } from './ui/button';
 import { startTutorial } from './TutorialGuide';
 import otterLogo from '../assets/Arthur.png';
@@ -17,14 +17,14 @@ const Navbar = ({ activeTab }: NavbarProps = {}) => {
     <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b bg-background/40 border-border/40">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center">
+          <Link to="https://otter-protocol.vercel.app" className="flex items-center">
             <img 
               src={otterLogo} 
               alt="OTTER" 
               className="h-12 w-auto md:h-16 object-contain" 
             />
             <span className="text-2xl font-pixel mt-2 ml-[-15px] tracking-tighter text-primary/90">OTTER</span>
-          </div>
+          </Link>
 
           <div className="flex items-center gap-4">
             <Button
