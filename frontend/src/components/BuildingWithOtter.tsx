@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, MotionValue, PanInfo } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, MotionValue } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 import otterMegaphone from '../assets/otter-megaphone.jpg';
@@ -48,9 +48,7 @@ const slides: Slide[] = [
 export default function OtterScrollSection() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
-  const [isMobile, setIsMobile] = useState<boolean>(false);
   const imageContainerRef = useRef<HTMLDivElement>(null);
-  const touchStartX = useRef<number | null>(null);
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -59,18 +57,8 @@ export default function OtterScrollSection() {
   const smoothMouseX = useSpring(mouseX, springConfig);
   const smoothMouseY = useSpring(mouseY, springConfig);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!imageContainerRef.current || isMobile) return;
+    if (!imageContainerRef.current) return;
     const { left, top, width, height } = imageContainerRef.current.getBoundingClientRect();
     const x = (e.clientX - left) / width - 0.5;
     const y = (e.clientY - top) / height - 0.5;
@@ -83,48 +71,44 @@ export default function OtterScrollSection() {
     mouseY.set(0);
   };
 
+  // Simple touch handlers for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!isMobile) return;
-    touchStartX.current = e.touches[0].clientX;
+    const touchX = e.touches[0].clientX;
+    const container = imageContainerRef.current;
+    
+    if (container) {
+      container.setAttribute('data-touch-start', touchX.toString());
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!isMobile || !touchStartX.current) return;
+    const container = imageContainerRef.current;
+    if (!container) return;
     
-    const touchEndX = e.changedTouches[0].clientX;
-    const diffX = touchStartX.current - touchEndX;
-    const swipeThreshold = 50; 
+    const touchStartX = container.getAttribute('data-touch-start');
+    if (!touchStartX) return;
 
-    if (Math.abs(diffX) > swipeThreshold) {
+    const touchEndX = e.changedTouches[0].clientX;
+    const diffX = parseFloat(touchStartX) - touchEndX;
+    const swipeThreshold = 50;
+
+    if (Math.abs(diffX) > swipeThreshold && !isAnimating) {
       if (diffX > 0 && currentIndex < slides.length - 1) {
+        // Swipe left - next
         triggerChange(currentIndex + 1);
       } else if (diffX < 0 && currentIndex > 0) {
+        // Swipe right - previous
         triggerChange(currentIndex - 1);
       }
     }
     
-    touchStartX.current = null;
-  };
-
-
-  const handlePan = (event: any, info: PanInfo) => {
-    if (isMobile) {
-      if (Math.abs(info.offset.x) > 100 && !isAnimating) {
-        if (info.offset.x > 0 && currentIndex > 0) {
-          triggerChange(currentIndex - 1);
-        } else if (info.offset.x < 0 && currentIndex < slides.length - 1) {
-          triggerChange(currentIndex + 1);
-        }
-      }
-    }
+    container.removeAttribute('data-touch-start');
   };
 
   useEffect(() => {
     const element = imageContainerRef.current;
     
     const handleWheel = (e: WheelEvent) => {
-      if (isMobile) return;
-      
       e.preventDefault();
       
       if (isAnimating) return;
@@ -143,7 +127,7 @@ export default function OtterScrollSection() {
       }
     };
 
-    if (element && !isMobile) {
+    if (element) {
       element.addEventListener('wheel', handleWheel, { passive: false });
     }
 
@@ -152,7 +136,7 @@ export default function OtterScrollSection() {
         element.removeEventListener('wheel', handleWheel);
       }
     };
-  }, [currentIndex, isAnimating, isMobile]);
+  }, [currentIndex, isAnimating]);
 
   const triggerChange = (newIndex: number) => {
     setIsAnimating(true);
@@ -175,13 +159,13 @@ export default function OtterScrollSection() {
       <div className="relative h-[90vh] sm:h-[100vh] md:h-[110vh] w-full overflow-hidden border-t-4 border-black">
         <div className="flex h-full w-full flex-col md:flex-row">
 
-          <motion.div
+          {/* Image Section */}
+          <div
             ref={imageContainerRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            onPan={handlePan}
             className="relative h-2/5 w-full md:h-full md:w-1/2 bg-slate-100 overflow-hidden cursor-crosshair perspective-[1500px]"
           >
             <div className="absolute inset-0 z-20 pointer-events-none opacity-[0.08]" 
@@ -199,32 +183,30 @@ export default function OtterScrollSection() {
                     currentIndex={currentIndex}
                     mouseX={smoothMouseX}
                     mouseY={smoothMouseY}
-                    isMobile={isMobile}
                   />
                 );
               })}
             </AnimatePresence>
             
-            {isMobile && (
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-30">
-                {slides.map((_, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      idx === currentIndex ? 'bg-black scale-125' : 'bg-gray-400'
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
+            {/* Mobile swipe indicator */}
+            <div className="md:hidden absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-30">
+              {slides.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    idx === currentIndex ? 'bg-black scale-125' : 'bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
             
             <div className="absolute inset-0 z-10 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-          </motion.div>
+          </div>
 
-          <motion.div
+          {/* Content Section */}
+          <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            onPan={handlePan}
             className="relative h-3/5 w-full md:h-full md:w-1/2 bg-white flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-24 py-8 md:py-0 border-t-4 md:border-t-0 md:border-l-4 border-black overflow-y-auto md:overflow-visible"
           >
             <AnimatePresence mode="wait">
@@ -234,28 +216,14 @@ export default function OtterScrollSection() {
                 animate="visible"
                 exit="exit"
                 variants={{
-                  hidden: { opacity: 0, x: isMobile ? (currentIndex > 0 ? -100 : 100) : 0 },
-                  visible: { 
-                    opacity: 1, 
-                    x: 0, 
-                    transition: { 
-                      duration: isMobile ? 0.4 : 0.6,
-                      staggerChildren: 0.05 
-                    } 
-                  },
-                  exit: { 
-                    opacity: 0, 
-                    x: isMobile ? (currentIndex > 0 ? 100 : -100) : 0, 
-                    transition: { duration: 0.3 } 
-                  }
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.05 } },
+                  exit: { opacity: 0, transition: { duration: 0.2 } }
                 }}
                 className="w-full"
               >
                 <motion.div
-                  variants={{ 
-                    hidden: { y: 20, opacity: 0 }, 
-                    visible: { y: 0, opacity: 1 } 
-                  }}
+                  variants={{ hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } }}
                   className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 border-2 border-black text-black flex items-center justify-center mb-6 sm:mb-8 text-base sm:text-lg md:text-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
                   style={{ fontFamily: '"Space Mono", monospace', fontWeight: 700, backgroundColor: slides[currentIndex].color }}
                 >
@@ -295,7 +263,8 @@ export default function OtterScrollSection() {
               </motion.div>
             </AnimatePresence>
 
-            <div className="absolute bottom-6 sm:bottom-8 md:bottom-12 right-6 sm:right-8 md:right-12 flex gap-2 sm:gap-3">
+            {/* Desktop indicators */}
+            <div className="hidden md:flex absolute bottom-6 sm:bottom-8 md:bottom-12 right-6 sm:right-8 md:right-12 gap-2 sm:gap-3">
               {slides.map((_, idx) => (
                 <div
                   key={idx}
@@ -306,7 +275,7 @@ export default function OtterScrollSection() {
               ))}
             </div>
 
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
@@ -319,10 +288,9 @@ interface Image3DCardProps {
   currentIndex: number;
   mouseX: MotionValue<number>;
   mouseY: MotionValue<number>;
-  isMobile: boolean;
 }
 
-function Image3DCard({ slide, index, currentIndex, mouseX, mouseY, isMobile }: Image3DCardProps) {
+function Image3DCard({ slide, index, currentIndex, mouseX, mouseY }: Image3DCardProps) {
   const isActive = index === currentIndex;
   
   const rotateX = useTransform(mouseY, [-0.5, 0.5], [15, -15]); 
@@ -330,22 +298,25 @@ function Image3DCard({ slide, index, currentIndex, mouseX, mouseY, isMobile }: I
 
   return (
     <motion.div
-      initial={ index > currentIndex ? { x: isMobile ? '100%' : '100%', opacity: 0 } : { x: isMobile ? '-100%' : '-100%', opacity: 0 }}
+      initial={ index > currentIndex ? { clipPath: 'inset(100% 0% 0% 0%)' } : { clipPath: 'inset(0% 0% 100% 0%)' }}
       animate={{ 
-        x: isActive ? 0 : index < currentIndex ? (isMobile ? '-100%' : '-100%') : (isMobile ? '100%' : '100%'),
-        opacity: isActive ? 1 : 0,
+        clipPath: isActive 
+          ? 'inset(0% 0% 0% 0%)' 
+          : index < currentIndex 
+            ? 'inset(0% 0% 100% 0%)'
+            : 'inset(100% 0% 0% 0%)',
         zIndex: isActive ? 10 : 0
       }}
       transition={{ 
-        duration: isMobile ? 0.4 : 0.8, 
+        duration: 0.8, 
         ease: [0.16, 1, 0.3, 1] 
       }}
       className="absolute inset-0 h-full w-full flex items-center justify-center p-6 sm:p-8 md:p-12 lg:p-24"
     >
       <motion.div
         style={{
-          rotateX: isActive && !isMobile ? rotateX : 0,
-          rotateY: isActive && !isMobile ? rotateY : 0,
+          rotateX: isActive ? rotateX : 0,
+          rotateY: isActive ? rotateY : 0,
           scale: isActive ? 1 : 0.9,
         }}
         className="relative w-full h-full shadow-2xl overflow-hidden border-2 sm:border-4 border-black bg-black"
@@ -362,19 +333,17 @@ function Image3DCard({ slide, index, currentIndex, mouseX, mouseY, isMobile }: I
             className="w-full h-full object-cover"
           />
 
-          {!isMobile && (
-            <motion.div 
-              style={{
-                  background: useTransform(
-                      mouseX, 
-                      [-0.5, 0.5], 
-                      ['linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 45%, rgba(255,255,255,0) 50%)', 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0) 45%, rgba(255,255,255,0) 50%)']
-                  ),
-                  x: useTransform(mouseX, [-0.5, 0.5], ['-100%', '100%'])
-              }}
-              className="absolute inset-0 z-20 pointer-events-none"
-            />
-          )}
+          <motion.div 
+            style={{
+                background: useTransform(
+                    mouseX, 
+                    [-0.5, 0.5], 
+                    ['linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.2) 45%, rgba(255,255,255,0) 50%)', 'linear-gradient(105deg, transparent 40%, rgba(255,255,255,0) 45%, rgba(255,255,255,0) 50%)']
+                ),
+                x: useTransform(mouseX, [-0.5, 0.5], ['-100%', '100%'])
+            }}
+            className="absolute inset-0 z-20 pointer-events-none"
+          />
       </motion.div>
     </motion.div>
   );
