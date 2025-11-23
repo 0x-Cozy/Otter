@@ -1,0 +1,34 @@
+{
+  "name": "otter-protocol",
+  "version": "0.1.2",
+  "type": "module",
+  "description": "Access control at the data level",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["sui", "walrus", "seal"],
+  "author": "ViDA",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0x-Cozy/otter.git"
+  },
+  "dependencies": {
+    "@mysten/seal": "^0.5.2",
+    "@mysten/sui": "^1.37.6"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2"
+  },
+  "peerDependencies": {
+    "@mysten/seal": "^0.5.2",
+    "@mysten/sui": "^1.37.6"
+  }
+}

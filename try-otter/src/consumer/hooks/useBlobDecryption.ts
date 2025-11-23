@@ -3,7 +3,7 @@ import { useSuiClient, useCurrentAccount } from '@mysten/dapp-kit';
 import { SealClient, SessionKey, NoAccessError } from '@mysten/seal';
 import { Transaction } from '@mysten/sui/transactions';
 import { fromHex } from '@mysten/sui/utils';
-import { ChunkedBlobHeader, extractEncryptedChunks, dechunk, parseChunkedBlobHeader } from 'otter';
+import { ChunkedBlobHeader, extractEncryptedChunks, dechunk, parseChunkedBlobHeader } from 'otter-protocol';
 
 interface DecryptionResult {
   data: Uint8Array;

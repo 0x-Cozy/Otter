@@ -6,7 +6,7 @@ import { useGatewayPayment } from '../consumer/hooks/useGatewayPayment';
 import { useSignAndExecuteTransaction, useSuiClient } from '@mysten/dapp-kit';
 import { Transaction } from '@mysten/sui/transactions';
 import { NoAccessError } from '@mysten/seal';
-import { ChunkedBlobHeader, parseChunkedBlobHeader } from 'otter';
+import { ChunkedBlobHeader, parseChunkedBlobHeader } from 'otter-protocol';
 
 interface InlineDecryptionViewProps {
   blobId: string;

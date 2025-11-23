@@ -1,4 +1,4 @@
-import { parseChunkedBlobHeader } from 'otter';
+import { parseChunkedBlobHeader } from 'otter-protocol';
 
 const aggregators = [
   'aggregator1',

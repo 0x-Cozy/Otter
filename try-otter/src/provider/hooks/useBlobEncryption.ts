@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSuiClient } from '@mysten/dapp-kit';
-import { encryptAndChunk, GatewayFunction } from 'otter';
+import { encryptAndChunk, GatewayFunction } from 'otter-protocol';
 import { useProviderConfig } from '../config';
 
 export interface EncryptionResult {

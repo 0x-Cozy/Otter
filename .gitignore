@@ -1,3 +1,9 @@
 frontend/node_modules
 try-otter/node_modules
 try-otter/otter-contract-examples/build
+otter-protocol-sdk/node_modules
+otter-protocol-sdk/dist
+otter-protocol-sdk/package-lock.json
+bot/.env
+bot/node_modules
+bot/package-lock.json

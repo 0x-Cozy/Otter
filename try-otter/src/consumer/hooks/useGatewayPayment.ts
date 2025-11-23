@@ -1,6 +1,6 @@
 import { useSuiClient, useSignAndExecuteTransaction } from '@mysten/dapp-kit';
 import { Transaction } from '@mysten/sui/transactions';
-import { ChunkedBlobHeader } from 'otter';
+import { ChunkedBlobHeader } from 'otter-protocol';
 
 interface PaymentQuote {
   chunksNeeded: number;
@@ -31,27 +31,38 @@ export function useGatewayPayment() {
     }
 
     const gatewayFunction = header.gatewayFunction;
-    const previewFunctionName =
-      gatewayFunction.previewFunction ||
-      (gatewayFunction.function === 'add_chunks'
-        ? 'add_chunks_preview'
-        : `${gatewayFunction.function}_preview`);
+    
+    if (!gatewayFunction.function) {
+      throw new Error('gatewayFunction.function is required but not provided in blob header');
+    }
+    
+    const previewFunctionName = gatewayFunction.previewFunction || `${gatewayFunction.function}_preview`;
+    const quoteEventTypeName = gatewayFunction.quoteEventType || 'QuoteEvent';
+    
     const previewTarget = `${gatewayFunction.packageId}::${gatewayFunction.module}::${previewFunctionName}`;
+    const quoteEventType = `${gatewayFunction.packageId}::${gatewayFunction.module}::${quoteEventTypeName}`;
 
     return new Promise((resolve) => {
       try {
         const previewTx = new Transaction();
+        
+        const previewArgs = gatewayFunction.arguments 
+          ? gatewayFunction.arguments.map((arg: any) => {
+              if (typeof arg === 'string' && arg.startsWith('0x')) {
+                return previewTx.object(arg);
+              }
+              return previewTx.pure.u64(arg);
+            })
+          : [
+              previewTx.object(header.policyObjectId),
+              previewTx.pure.u64(targetMaxIndex),
+            ];
+        
         previewTx.moveCall({
           target: previewTarget,
-          arguments: [
-            previewTx.object(header.policyObjectId),
-            previewTx.pure.u64(targetMaxIndex),
-          ],
+          arguments: previewArgs,
         });
         previewTx.setGasBudget(10000000);
-
-        const quoteEventTypeName = gatewayFunction.quoteEventType || 'QuoteEvent';
-        const quoteEventType = `${gatewayFunction.packageId}::${gatewayFunction.module}::${quoteEventTypeName}`;
 
         signAndExecute(
           {
@@ -70,11 +81,7 @@ export function useGatewayPayment() {
                   options: { showEvents: true },
                 });
 
-                const quoteEvent =
-                  txDetails.events?.find((event: any) => event.type === quoteEventType) ||
-                  txDetails.events?.find((event: any) =>
-                    typeof event.type === 'string' && event.type.endsWith(`::${quoteEventTypeName}`),
-                  );
+                const quoteEvent = txDetails.events?.find((event: any) => event.type === quoteEventType);
 
                 if (quoteEvent) {
                   const quoteData = (quoteEvent.parsedJson || {}) as Record<string, any>;
@@ -114,19 +121,35 @@ export function useGatewayPayment() {
     totalFeeNeeded: bigint,
   ): Promise<boolean> => {
     if (!header.gatewayFunction) {
-      return false;
+      throw new Error('gatewayFunction is required but not provided in blob header');
+    }
+
+    const gatewayFunction = header.gatewayFunction;
+    
+    if (!gatewayFunction.function) {
+      throw new Error('gatewayFunction.function is required but not provided in blob header');
     }
 
     return new Promise((resolve, reject) => {
       const tx = new Transaction();
       const [coin] = tx.splitCoins(tx.gas, [tx.pure.u64(totalFeeNeeded.toString())]);
+      
+      const paymentArgs = gatewayFunction.arguments
+        ? [coin, ...gatewayFunction.arguments.map((arg: any) => {
+            if (typeof arg === 'string' && arg.startsWith('0x')) {
+              return tx.object(arg);
+            }
+            return tx.pure.u64(arg);
+          })]
+        : [
+            coin,
+            tx.object(header.policyObjectId),
+            tx.pure.u64(targetMaxIndex),
+          ];
+      
       tx.moveCall({
-        target: `${header.gatewayFunction!.packageId}::${header.gatewayFunction!.module}::${header.gatewayFunction!.function}`,
-        arguments: [
-          coin,
-          tx.object(header.policyObjectId),
-          tx.pure.u64(targetMaxIndex),
-        ],
+        target: `${gatewayFunction.packageId}::${gatewayFunction.module}::${gatewayFunction.function}`,
+        arguments: paymentArgs,
       });
       tx.setGasBudget(20000000);
 
