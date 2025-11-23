@@ -89,7 +89,7 @@ const OtterFooter: React.FC = () => {
         />
       </div>
 
-      <div className={`absolute top-0 left-0 right-0 h-16 z-10 hidden md:flex pointer-events-none transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+      <div className={`absolute top-0 left-0 right-0 h-16 z-10 hidden md:flex pointer-events-none transition-all duration-\[1500ms\] cubic-bezier(0.16, 1, 0.3, 1) ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
          <div className="w-16 h-16 bg-white border-r border-b border-black"></div>
          <div className="w-16 h-16 bg-white border-r border-b border-black"></div>
          <div className="w-16 h-16 bg-transparent border-r border-b border-black/20"></div>
@@ -103,7 +103,7 @@ const OtterFooter: React.FC = () => {
           <div className="lg:col-span-5 flex flex-col items-center lg:items-start relative">
             
             <div 
-              className={`relative mb-8 bg-white border-2 border-black px-8 py-5 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-[1500ms] cubic-bezier(0.34, 1.56, 0.64, 1) delay-200 ${isVisible ? 'opacity-100 translate-y-0 scale-100 rotate-0' : 'opacity-0 translate-y-32 scale-50 -rotate-12'}`}
+              className={`relative mb-8 bg-white border-2 border-black px-8 py-5 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-\[1500ms\] cubic-bezier(0.34, 1.56, 0.64, 1) delay-200 ${isVisible ? 'opacity-100 translate-y-0 scale-100 rotate-0' : 'opacity-0 translate-y-32 scale-50 -rotate-12'}`}
               style={{
                 transform: isVisible ? `translate3d(${mousePos.x * 20}px, ${mousePos.y * 20}px, 0)` : undefined
               }}
@@ -114,7 +114,7 @@ const OtterFooter: React.FC = () => {
             </div>
 
             <div 
-              className={`relative w-80 lg:w-[450px] transition-all duration-[2000ms] cubic-bezier(0.16, 1, 0.3, 1) ${isVisible ? 'translate-y-0 opacity-100 grayscale-0' : 'translate-y-[150%] opacity-0 grayscale'}`}
+              className={`relative w-80 lg:w-[450px] transition-all duration-\[2000ms\] cubic-bezier(0.16, 1, 0.3, 1) ${isVisible ? 'translate-y-0 opacity-100 grayscale-0' : 'translate-y-[150%] opacity-0 grayscale'}`}
               style={{
                 transform: isVisible 
                   ? `translate3d(${mousePos.x * -30}px, ${mousePos.y * -30}px, 0)` 
@@ -141,7 +141,7 @@ const OtterFooter: React.FC = () => {
               {footerColumns.map((column, colIndex) => (
                 <div 
                   key={column.title} 
-                  className={`space-y-4 transition-all duration-[1200ms] cubic-bezier(0.16, 1, 0.3, 1)`}
+                  className={`space-y-4 transition-all duration-\[1200ms\] cubic-bezier(0.16, 1, 0.3, 1)`}
                   style={{ 
                     transitionDelay: `${300 + (colIndex * 150)}ms`,
                     opacity: isVisible ? 1 : 0,
@@ -169,7 +169,7 @@ const OtterFooter: React.FC = () => {
             </div>
 
             <div 
-              className={`bg-white border-4 border-black p-0 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) delay-500 will-change-transform ${isVisible ? 'opacity-100 translate-x-0 rotate-y-0' : 'opacity-0 translate-x-40 rotate-y-12'}`}
+              className={`bg-white border-4 border-black p-0 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] transition-all duration-\[1500ms\] cubic-bezier(0.16, 1, 0.3, 1) delay-500 will-change-transform ${isVisible ? 'opacity-100 translate-x-0 rotate-y-0' : 'opacity-0 translate-x-40 rotate-y-12'}`}
             >
               <div className="bg-black text-white px-6 py-3 font-bold uppercase text-sm tracking-wider flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -223,7 +223,7 @@ const OtterFooter: React.FC = () => {
             </div>
 
             <div 
-              className={`mt-16 pt-8 border-t-2 border-black flex flex-col md:flex-row justify-between items-center text-xs font-bold uppercase tracking-wider text-black transition-all duration-[1000ms] delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+              className={`mt-16 pt-8 border-t-2 border-black flex flex-col md:flex-row justify-between items-center text-xs font-bold uppercase tracking-wider text-black transition-all duration-\[1000ms\] delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             >
                <p>© 2025 OTTER PROTOCOL.</p>
                <div className="flex gap-6 mt-4 md:mt-0">
