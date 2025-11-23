@@ -29,53 +29,53 @@ const Features = () => {
           opacity 
         }}
       >
-        <h1 className="text-black font-brush text-[30vw] leading-none rotate-[-4deg] tracking-tighter opacity-40">
+        <h1 className="text-black font-brush text-[40vw] sm:text-[35vw] md:text-[30vw] leading-none rotate-[-4deg] tracking-tighter opacity-40">
           OTTER
         </h1>
       </motion.div>
 
       <div className="relative z-10">
-        <div className="fixed top-8 left-8 z-50">
+        <div className="fixed top-4 sm:top-6 md:top-8 left-4 sm:left-6 md:left-8 z-50">
           <CrosshairIcon />
         </div>
-        <div className="fixed top-8 right-8 z-50">
+        <div className="fixed top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8 z-50">
           <CrosshairIcon />
         </div>
 
         <motion.div 
-          className="container mx-auto px-6 pt-32 pb-20"
+          className="container mx-auto px-4 sm:px-6 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20"
           style={{ 
             y: cardsY,
             opacity 
           }}
         >
           <motion.div 
-            className="text-center mb-20"
+            className="text-center mb-16 sm:mb-20"
             style={{ y: textY }}
           >
-            <h2 className="text-6xl md:text-8xl font-bold mb-6 leading-tight font-pixel">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 sm:mb-6 leading-tight font-pixel">
               FEATURES
             </h2>
-            <p className="text-xl md:text-2xl text-black/70 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-black/70 max-w-2xl mx-auto px-4">
               Built for the next generation of decentralized data exchange.
             </p>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
             <TiltCard 
               className="bg-gray-800 border-2 border-gray-700"
               delay={0}
             >
-              <div className="flex justify-between items-start mb-8">
-                <h3 className="text-white text-4xl md:text-5xl font-bold leading-[0.95] tracking-tight max-w-[80%]">
+              <div className="flex justify-between items-start mb-6 sm:mb-8 gap-4">
+                <h3 className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-tight max-w-[80%]">
                   PROGRAMMABLE <div>DATA</div>EXCHANGE
                 </h3>
-                <div className="bg-white rounded-full p-2 shrink-0">
-                  <CheckCircle2 className="w-6 h-6 text-black" />
+                <div className="bg-white rounded-full p-1.5 sm:p-2 shrink-0">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-black" />
                 </div>
               </div>
               
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
                 A data exchange layer that enables consumers to programmatically choose the amount of data to pay for and decrypt—enabling both human users and AI agents to access exactly what they need without the need for a provider-defined interface.
               </p>
             </TiltCard>
@@ -84,26 +84,26 @@ const Features = () => {
               className="bg-teal border-2 border-teal/80"
               delay={0.1}
             >
-              <div className="flex justify-between items-start mb-8">
-                <h3 className="text-black text-4xl md:text-5xl font-bold leading-[0.95] tracking-tight max-w-[80%]">
+              <div className="flex justify-between items-start mb-6 sm:mb-8 gap-4">
+                <h3 className="text-black text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-tight max-w-[80%]">
                   PROGRAMMABLE ACCESS CONTROL
                 </h3>
-                <div className="bg-black rounded-full p-2 shrink-0">
-                  <CheckCircle2 className="w-6 h-6 text-white" />
+                <div className="bg-black rounded-full p-1.5 sm:p-2 shrink-0">
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
               </div>
               
-              <p className="text-black/80 text-lg leading-relaxed font-medium">
+              <p className="text-black/80 text-sm sm:text-base md:text-lg leading-relaxed font-medium">
               Define granular data access policies that enforce themselves. Built on Sui, Walrus and Seal, Otter enables providers to define access rules for their data through fine-grained access control.
               </p>
             </TiltCard>
           </div>
 
           <motion.div 
-            className="text-center mt-16"
+            className="text-center mt-12 sm:mt-16"
             style={{ y: textY }}
           >
-            <button className="px-8 py-4 bg-black hover:bg-black/90 text-cream font-mono text-sm uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-105">
+            <button className="px-6 sm:px-8 py-3 sm:py-4 bg-black hover:bg-black/90 text-cream font-mono text-xs sm:text-sm uppercase tracking-wider rounded-full transition-all duration-300 hover:scale-105">
               EXPLORE THE DOCS →
             </button>
           </motion.div>
@@ -185,11 +185,11 @@ const TiltCard = ({
         delay
       }}
       viewport={{ once: true }}
-      className={`relative rounded-3xl p-8 md:p-12 min-h-[400px] flex flex-col justify-between shadow-2xl cursor-default ${className}`}
+      className={`relative rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-12 min-h-[320px] sm:min-h-[360px] md:min-h-[400px] flex flex-col justify-between shadow-2xl cursor-default ${className}`}
     >
       <motion.div 
         style={{ background: sheenGradient }}
-        className="absolute inset-0 rounded-3xl opacity-50 pointer-events-none z-20"
+        className="absolute inset-0 rounded-2xl sm:rounded-3xl opacity-50 pointer-events-none z-20"
       />
       <div style={{ transform: "translateZ(40px)" }}>
         {children}
@@ -199,7 +199,7 @@ const TiltCard = ({
 };
 
 const CrosshairIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-black">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-black sm:w-6 sm:h-6 md:w-7 md:h-7">
     <line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" strokeWidth="1.5" />
     <line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" strokeWidth="1.5" />
     <circle cx="12" cy="12" r="8" stroke="currentColor" strokeWidth="1.5" />
