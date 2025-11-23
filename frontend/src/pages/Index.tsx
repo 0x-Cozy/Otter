@@ -1,12 +1,11 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import WhatIsOtter from "@/components/WhatIsOtter";
-import UseCases from "@/components/UseCases";
-import HowItWorks from "@/components/HowItWorks";
-import BuildingWithOtter from "@/components/BuildingWithOtter";
-import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Features from "../components/Features";
+import WhatIsOtter from "../components/WhatIsOtter";
+import UseCases from "../components/UseCases";
+import HowItWorks from "../components/HowItWorks";
+import BuildingWithOtter from "../components/BuildingWithOtter";
+import Footer from "../components/Footer";
 
 const Index = () => {
   return (
@@ -18,7 +17,6 @@ const Index = () => {
       <UseCases />
       <HowItWorks />
       <BuildingWithOtter />
-      <CTASection />
       <Footer />
     </div>
   );
