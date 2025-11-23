@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
             </button>
 
             <Link 
-              to="http://localhost:5173/"
+              to="https://otter-protocol.vercel.app/"
               className="relative group"
             >
               <div className="absolute inset-0 bg-white translate-x-1.5 translate-y-1.5 transition-transform duration-200 group-hover:translate-x-3 group-hover:translate-y-3 group-active:translate-x-0 group-active:translate-y-0"></div>
