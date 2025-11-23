@@ -54,10 +54,10 @@ const OtterFooter: React.FC = () => {
   }, []);
 
   const footerColumns: FooterColumn[] = [
-    { title: 'Discover', links: ['OTTER', 'WAL TOKEN', 'NETWORK', 'DEFLATION'] },
+    { title: 'Discover', links: ['OTTER', 'NETWORK', 'DEFLATION'] },
     { title: 'Build', links: ['GET STARTED', 'DOCS', 'GITHUB'] },
     { title: 'Join', links: ['TWITTER', 'DISCORD'] },
-    { title: 'Use', links: ['STAKE OTTR', 'APPS & SERVICES'] }
+    { title: 'Use', links: ['SDK', 'APPS & SERVICES'] }
   ];
 
   return (
@@ -191,7 +191,7 @@ const OtterFooter: React.FC = () => {
                     <div className="flex items-start gap-3">
                       <input type="checkbox" id="marketing" className="mt-1 w-5 h-5 border-2 border-black text-black focus:ring-0 rounded-none cursor-pointer" />
                       <label htmlFor="marketing" className="text-xs font-bold leading-tight cursor-pointer select-none text-black pt-1">
-                        I AGREE TO RECEIVE COMMS FROM THE<br/>OTTER FOUNDATION.
+                        I AGREE TO RECEIVE COMMS FROM <br/>OTTER PROTOCOL.
                       </label>
                     </div>
 
@@ -209,7 +209,7 @@ const OtterFooter: React.FC = () => {
             <div 
               className={`mt-16 pt-8 border-t-2 border-black flex flex-col md:flex-row justify-between items-center text-xs font-bold uppercase tracking-wider text-black transition-all duration-[1000ms] delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             >
-               <p>© 2025 OTTER FOUNDATION.</p>
+               <p>© 2025 OTTER PROTOCOL.</p>
                <div className="flex gap-6 mt-4 md:mt-0">
                  <a href="#" className="hover:bg-black hover:text-[#22d3ee] px-1 transition-colors">Privacy Policy</a>
                  <a href="#" className="hover:bg-black hover:text-[#22d3ee] px-1 transition-colors">Terms of Service</a>

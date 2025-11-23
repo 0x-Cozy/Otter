@@ -118,7 +118,7 @@ export default function OtterScrollSection() {
           THE PROTOCOL
         </h1>
         <p className="text-xl text-slate-500 font-medium tracking-wide" style={{ fontFamily: '"Space Grotesk", sans-serif' }}>
-          The native data layer for the Sui ecosystem.
+          The native data exchange layer for the Sui ecosystem.
         </p>
       </div>
 

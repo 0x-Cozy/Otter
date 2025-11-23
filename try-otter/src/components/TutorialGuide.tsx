@@ -20,7 +20,7 @@ export const TutorialGuide = ({ onComplete }: TutorialGuideProps) => {
             element: '[data-tutorial="intro"]',
             popover: {
               title: 'Welcome to OTTER! 🦦',
-              description: 'OTTER is a data exchange layer with two types of users: Consumers (who search and decrypt data) and Providers (who publish and encrypt data). Switch between tabs to explore each role.',
+              description: 'OTTER is a data exchange layer with two types of users: Data Providers (who publish and encrypt data) and Data Consumers (who search and decrypt data). Switch between tabs to explore each role.',
               side: 'bottom',
               align: 'center',
             },
@@ -65,7 +65,7 @@ export const TutorialGuide = ({ onComplete }: TutorialGuideProps) => {
             element: '[data-tutorial="tabs"]',
             popover: {
               title: 'Switch to Provider Tab',
-              description: '👉 Switch to the <strong>"Provider (Publish & Encrypt)"</strong> tab above to learn about publishing and encrypting data. Click the Help button again when you\'re on the Provider tab to start the Provider tutorial.',
+              description: '<Switch to the <strong>"Provider (Publish & Encrypt)"</strong> tab above to learn about publishing and encrypting data. Click the Help button again when you\'re on the Provider tab to start the Provider tutorial.',
               side: 'bottom',
               align: 'center',
             },
@@ -104,7 +104,7 @@ export const startConsumerTutorial = () => {
           element: '[data-tutorial="intro"]',
           popover: {
             title: 'Welcome to OTTER! 🦦',
-            description: 'OTTER is a data exchange layer with two types of users: Consumers (who search and decrypt data) and Providers (who publish and encrypt data). Switch between tabs to explore each role.',
+            description: 'OTTER is a data exchange layer with two types of users: Data Providers (who publish and encrypt data) and Data Consumers (who search and decrypt data). Switch between tabs to explore each role.',
             side: 'bottom',
             align: 'center',
           },
@@ -172,7 +172,7 @@ export const startProviderTutorial = () => {
           element: '[data-tutorial="provider-tabs"]',
           popover: {
             title: 'Provider Mode',
-            description: 'Welcome to Provider mode! Here you can upload and encrypt images with different pricing models. Let\'s explore the options below.',
+            description: 'Welcome to Provider mode! Here you can upload and encrypt images with different pricing models. Of course in real scenerios you\'d be the one to deploy your contract and set your own access controls and pricing models. These are just options to show how Otter removes the need for an interface and allows for direct access control and interactions at the data level. Let\'s explore the options below.',
             side: 'bottom',
             align: 'center',
           },
@@ -190,7 +190,7 @@ export const startProviderTutorial = () => {
           element: '[data-tutorial="subscription-card"]',
           popover: {
             title: 'Subscription Card',
-            description: 'Pay for time-based access (e.g., 30 days). After the subscription expires, users need to renew to access the content again. Also uses unchunked storage.',
+            description: 'Pay for time-based access (3 mins). After the subscription expires, users need to renew to access the content again. Also uses unchunked storage.',
             side: 'bottom',
             align: 'start',
           },
@@ -208,7 +208,7 @@ export const startProviderTutorial = () => {
           element: '[data-tutorial="chunk-dynamic-card"]',
           popover: {
             title: 'Progressive Pricing',
-            description: 'Chunked data with progressive pricing - the more chunks you decrypt, the cheaper each additional chunk becomes. Encourages users to decrypt more content.',
+            description: 'Chunked data with progressive pricing - the initial chunks are cheaper so users can try out the data and then pay premium for the rest if it is what they want.',
             side: 'top',
             align: 'start',
           },
@@ -226,7 +226,7 @@ export const startProviderTutorial = () => {
           element: '[data-tutorial="help-button"]',
           popover: {
             title: 'Need Help?',
-            description: 'You can always access this tutorial again by clicking the Help button. Explore OTTER and start exchanging data securely!',
+            description: 'You can always access this tutorial again by clicking the Help button. Explore OTTER and start exchanging data with ease!',
             side: 'bottom',
             align: 'end',
           },
