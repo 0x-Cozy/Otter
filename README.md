@@ -29,6 +29,6 @@ The landing page/marketing site, links to try-otter.
 - `parseChunkedBlobHeader()` - reads the header from the blob to get pricing info, module type, chunk count
 - `extractEncryptedChunks()` - pulls out the encrypted chunks from the blob data
 - `dechunk()` - decrypts and reassembles all the chunks back into the original data
-- `encryptAndChunk()` - takes your image/data and encrypts it into chunks with the pricing policy you set in header
+- `encryptAndChunk()` - takes your image/data and encrypts it into chunks with the pricing policy you set 
 
 
