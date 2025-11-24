@@ -24,6 +24,7 @@ const Hero: React.FC = () => {
       ref={containerRef}
       className="relative h-screen overflow-hidden bg-background hero-dark-theme perspective-3d"
     >
+      {/* Fixed Starfield - covers entire background */}
       <motion.div 
         className="absolute inset-0 z-0 parallax-deep"
         style={{ 
@@ -31,7 +32,9 @@ const Hero: React.FC = () => {
           opacity 
         }}
       >
-        <Starfield />
+        <div className="w-full h-full">
+          <Starfield />
+        </div>
       </motion.div>
 
       <div className="relative z-10 h-full parallax-foreground">
