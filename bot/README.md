@@ -1,5 +1,5 @@
 This is just a CLI example of how Otter allows download and decrypt by agents and Users alike since access points is directly integrated in the blob so there would be no need for a data provider defined interface like a frontend
-this is obviously not an agent or AI based but is meant to be a glimpse of how easy it would be for agents to work with Otter with access discovery at data level
+this is obviously not an agent or AI based but is meant to be a simulation of how easy it would be for agents to work with Otter with access discovery at data level
 
 ### Setup
 
