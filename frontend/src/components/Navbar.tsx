@@ -91,8 +91,10 @@ const Navbar: React.FC = () => {
                     </div>
                   </button>
 
-                  <Link 
-                    to="/try-otter"
+                  <a 
+                    href="https://try-otter.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="relative group"
                   >
                     <div className="absolute inset-0 bg-white translate-x-1.5 translate-y-1.5 transition-transform duration-200 group-hover:translate-x-3 group-hover:translate-y-3 group-active:translate-x-0 group-active:translate-y-0"></div>
@@ -100,17 +102,26 @@ const Navbar: React.FC = () => {
                         <span>Try Otter</span>
                         <ArrowUpRight className="w-4 h-4 border border-black bg-white/20 rounded-full p-0.5 transition-transform group-hover:rotate-45" />
                     </div>
-                  </Link>
+                  </a>
                 </>
               )}
             </div>
 
-          <button 
-            onClick={toggleMobileMenu}
-            className="md:hidden relative z-60 w-10 h-10 flex items-center justify-center text-white hover:text-[#22d3ee] transition-colors"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />} 
-          </button>
+            <button 
+              onClick={toggleMobileMenu}
+              className="md:hidden relative z-[60] w-12 h-12 flex items-center justify-center bg-white/5 border-2 border-white/10 hover:border-[#22d3ee] hover:bg-[#22d3ee]/10 transition-colors"
+            >
+              {isMobileMenuOpen ? (
+                <X size={24} className="text-[#22d3ee]" />
+              ) : (
+                <div className="flex flex-col gap-1.5 items-end">
+                    <div className="w-6 h-[2px] bg-current"></div>
+                    <div className="w-4 h-[2px] bg-current"></div>
+                    <div className="w-6 h-[2px] bg-current"></div>
+                </div>
+              )}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -156,8 +167,10 @@ const Navbar: React.FC = () => {
                 Documentation
             </button>
             
-            <Link 
-                to="/try-otter"
+            <a 
+                href="https://try-otter.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="block w-full"
             >
@@ -168,7 +181,7 @@ const Navbar: React.FC = () => {
                         <ArrowUpRight size={20} />
                     </div>
                 </div>
-            </Link>
+            </a>
           </div>
 
           <div className="mt-8 flex justify-between text-[10px] font-mono text-white/30 uppercase tracking-widest">
