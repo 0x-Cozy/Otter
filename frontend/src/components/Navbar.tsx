@@ -105,21 +105,12 @@ const Navbar: React.FC = () => {
               )}
             </div>
 
-            <button 
-              onClick={toggleMobileMenu}
-              className="md:hidden relative z-[60] w-12 h-12 flex items-center justify-center bg-white/5 border-2 border-white/10 hover:border-[#22d3ee] hover:bg-[#22d3ee]/10 transition-colors"
-            >
-              {isMobileMenuOpen ? (
-                <X size={24} className="text-[#22d3ee]" />
-              ) : (
-                <div className="flex flex-col gap-1.5 items-end">
-                    <div className="w-6 h-[2px] bg-current"></div>
-                    <div className="w-4 h-[2px] bg-current"></div>
-                    <div className="w-6 h-[2px] bg-current"></div>
-                </div>
-              )}
-            </button>
-          </div>
+          <button 
+            onClick={toggleMobileMenu}
+            className="md:hidden relative z-60 w-10 h-10 flex items-center justify-center text-white hover:text-[#22d3ee] transition-colors"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />} 
+          </button>
         </div>
       </nav>
 
