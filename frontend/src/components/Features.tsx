@@ -124,7 +124,7 @@ const Features: React.FC = () => {
                     </h3>
                     
                     <p className="text-black font-bold text-lg leading-relaxed mb-8 flex-1">
-                        Define granular data access policies that enforce themselves. Built on Sui, Walrus and Seal, Otter enables providers to define strict access rules.
+                        Define granular data access policies that enforce themselves with Sui and Seal, Otter enables data consumers to discover these policies and access the data they need without the need for a dedicated UI.
                     </p>
 
                     <div className="flex flex-col gap-2">
