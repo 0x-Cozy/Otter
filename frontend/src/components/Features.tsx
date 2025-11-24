@@ -10,7 +10,6 @@ const Features: React.FC = () => {
     offset: ["start start", "end start"]
   });
 
-  // Mechanical Parallax
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-5%"]);
   const cardsY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
@@ -20,7 +19,6 @@ const Features: React.FC = () => {
       ref={containerRef}
       className="relative min-h-[160vh] bg-[#22d3ee] overflow-hidden features-section border-t-4 border-black font-mono"
     >
-      {/* --- 1. THE WALRUS GRID (Black lines on Cyan) --- */}
       <div className="absolute inset-0 pointer-events-none opacity-10" 
            style={{ 
              backgroundImage: 'linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px)', 
@@ -28,7 +26,6 @@ const Features: React.FC = () => {
            }}>
       </div>
 
-      {/* --- 2. GIANT BACKGROUND MARQUEE --- */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none flex flex-col justify-between opacity-[0.05]">
          {[...Array(5)].map((_, i) => (
             <div key={i} className="whitespace-nowrap text-[12vw] font-black leading-none select-none" style={{ fontFamily: '"Space Grotesk"' }}>
@@ -38,7 +35,6 @@ const Features: React.FC = () => {
       </div>
 
       <div className="relative z-10">
-        {/* Corner Decorations */}
         <div className="fixed top-8 left-8 z-50 pointer-events-none hidden md:block">
             <div className="w-12 h-12 border-l-4 border-t-4 border-black"></div>
         </div>
@@ -50,7 +46,7 @@ const Features: React.FC = () => {
           className="container mx-auto px-6 pt-32 pb-24"
           style={{ y: cardsY }}
         >
-          {/* --- HEADER --- */}
+
           <motion.div 
             className="text-center mb-24"
             style={{ y: textY }}
@@ -93,10 +89,9 @@ const Features: React.FC = () => {
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
             
-            {/* --- CARD 1: WINDOWS 95 STYLE --- */}
             <WindowCard 
                 title="DATA_EXCHANGE.EXE"
-                headerColor="bg-[#bef264]" // Lime
+                headerColor="bg-[#bef264]" 
                 delay={0}
             >
                 <div className="p-8 flex flex-col h-full">
@@ -118,10 +113,9 @@ const Features: React.FC = () => {
                 </div>
             </WindowCard>
 
-            {/* --- CARD 2: WINDOWS 95 STYLE --- */}
             <WindowCard 
                 title="ACCESS_CONTROL.BAT"
-                headerColor="bg-[#fbbf24]" // Amber
+                headerColor="bg-[#fbbf24]" 
                 delay={0.1}
             >
                 <div className="p-8 flex flex-col h-full">
@@ -148,7 +142,6 @@ const Features: React.FC = () => {
 
           </div>
 
-          {/* --- BUTTON --- */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -180,7 +173,6 @@ interface WindowCardProps {
   delay?: number;
 }
 
-// --- THE WINDOW CARD (3D TILT) ---
 const WindowCard: React.FC<WindowCardProps> = ({ 
   children, 
   title, 
@@ -205,13 +197,12 @@ const WindowCard: React.FC<WindowCardProps> = ({
     y.set(0);
   };
 
-  // Heavy, industrial spring physics
   const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [10, -10]), { stiffness: 300, damping: 20 });
   const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-10, 10]), { stiffness: 300, damping: 20 });
   
   return (
     <div className="relative group perspective-1000">
-        {/* 1. The Hard Shadow (Static) */}
+
         <div className="absolute inset-0 bg-black translate-x-5 translate-y-5 -z-10 transition-transform duration-200 group-hover:translate-x-8 group-hover:translate-y-8"></div>
         
         <motion.div
@@ -228,10 +219,9 @@ const WindowCard: React.FC<WindowCardProps> = ({
             viewport={{ once: false, amount: 0.3 }}
             className="relative bg-white border-4 border-black min-h-[500px] flex flex-col"
         >
-            {/* --- WINDOW TITLE BAR --- */}
             <div className={`h-12 border-b-4 border-black ${headerColor} flex items-center justify-between px-3 select-none`} style={{ transform: "translateZ(20px)" }}>
                 <div className="flex items-center gap-2">
-                    {/* Window Lines Decoration */}
+
                     <div className="flex flex-col gap-[2px]">
                         <div className="w-4 h-[2px] bg-black"></div>
                         <div className="w-4 h-[2px] bg-black"></div>
@@ -246,11 +236,9 @@ const WindowCard: React.FC<WindowCardProps> = ({
                 </div>
             </div>
 
-            {/* --- WINDOW CONTENT --- */}
             <div className="flex-1 bg-white relative" style={{ transform: "translateZ(10px)" }}>
                 {children}
                 
-                {/* Decorative Scrollbar Track */}
                 <div className="absolute top-0 right-0 bottom-0 w-6 border-l-4 border-black bg-gray-100 flex flex-col justify-between p-1">
                     <div className="w-full aspect-square bg-white border-2 border-black flex items-center justify-center">▲</div>
                     <div className="w-full h-1/3 bg-black border-2 border-white"></div>

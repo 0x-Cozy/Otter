@@ -156,7 +156,6 @@ export default function OtterScrollSection() {
       <div className="relative h-[90vh] sm:h-[100vh] md:h-[110vh] w-full overflow-hidden border-t-4 border-black">
         <div className="flex h-full w-full flex-col md:flex-row">
 
-          {/* Image Section - Touch handlers ONLY here */}
           <div
             ref={imageContainerRef}
             onMouseMove={handleMouseMove}
@@ -185,7 +184,6 @@ export default function OtterScrollSection() {
               })}
             </AnimatePresence>
             
-            {/* Mobile swipe indicator */}
             <div className="md:hidden absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-30">
               {slides.map((_, idx) => (
                 <div
@@ -200,7 +198,6 @@ export default function OtterScrollSection() {
             <div className="absolute inset-0 z-10 pointer-events-none opacity-10 bg-[linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] bg-[size:40px_40px]"></div>
           </div>
 
-          {/* Content Section - NO touch handlers here! */}
           <div className="relative h-3/5 w-full md:h-full md:w-1/2 bg-white flex flex-col justify-center px-6 sm:px-8 md:px-16 lg:px-24 py-8 md:py-0 border-t-4 md:border-t-0 md:border-l-4 border-black overflow-y-auto md:overflow-visible">
             <AnimatePresence mode="wait">
               <motion.div
@@ -256,7 +253,6 @@ export default function OtterScrollSection() {
               </motion.div>
             </AnimatePresence>
 
-            {/* Desktop indicators */}
             <div className="hidden md:flex absolute bottom-6 sm:bottom-8 md:bottom-12 right-6 sm:right-8 md:right-12 gap-2 sm:gap-3">
               {slides.map((_, idx) => (
                 <div
